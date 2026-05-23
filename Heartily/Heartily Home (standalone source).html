@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartily — Find the work you'd do with your whole heart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   HEARTILY — SHARED DESIGN TOKENS
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --chalk:     #F9F8F7;
+  --chalk-2:   #EFEDE9;
+  --dusk:      #362B47;
+  --dusk-deep: #221B30;
+  --dusk-ink:  #14101D;
+  --marmalade: #FCB879;
+  --ember:     #FA6A74;
+  --mulberry:  #AA2163;
+  --grad:   linear-gradient(135deg, #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --grad-h: linear-gradient(90deg,  #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --display: 'Lexend Giga', system-ui, sans-serif;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--display);
+  color: var(--dusk);
+  background: var(--chalk);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+button, a { font: inherit; color: inherit; cursor: pointer; }
+button { background: none; border: 0; }
+a { text-decoration: none; }
+em { font-style: italic; }
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.serif  { font-family: var(--serif); font-style: normal; }
+.italic { font-family: var(--serif); font-style: italic; }
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.eyebrow {
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SHARED NAV
+   ═══════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 64px;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(20, 16, 29, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: rgba(249, 248, 247, 0.06);
+}
+.nav.scrolled-light {
+  background: rgba(249, 248, 247, 0.82);
+  backdrop-filter: blur(18px);
+  border-bottom-color: rgba(54, 43, 71, 0.06);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--chalk);
+  transition: color 0.4s var(--ease);
+}
+.nav.scrolled-light .nav-brand { color: var(--dusk); }
+.nav-brand .mark { width: 22px; height: 28px; }
+.nav-brand .word { width: 92px; }
+.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(249, 248, 247, 0.12);
+  background: rgba(249, 248, 247, 0.02);
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+.nav.scrolled-light .nav-pills { border-color: rgba(54, 43, 71, 0.12); background: rgba(54, 43, 71, 0.02); }
+.nav-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(249, 248, 247, 0.62);
+  transition: all 0.25s var(--ease);
+  white-space: nowrap;
+}
+.nav.scrolled-light .nav-pill { color: rgba(54, 43, 71, 0.58); }
+.nav-pill:hover { color: var(--chalk); background: rgba(249, 248, 247, 0.06); }
+.nav.scrolled-light .nav-pill:hover { color: var(--dusk); background: rgba(54, 43, 71, 0.05); }
+.nav-pill.active {
+  background: var(--grad-h);
+  color: var(--dusk-deep);
+  font-weight: 400;
+}
+.nav-pill.active:hover { color: var(--dusk-deep); }
+.nav-pills-mobile {
+  display: none;
+}
+@media (max-width: 720px) {
+  .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; }
+}
+@media (max-width: 480px) {
+  .nav { padding: 0 14px; }
+  .nav-brand .word { display: none; }
+  .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
+  .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════════════ */
+section {
+  position: relative;
+  padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw, 80px);
+  overflow: hidden;
+}
+.bg-deep   { background: var(--dusk-deep); color: var(--chalk); }
+.bg-ink    { background: var(--dusk-ink);  color: var(--chalk); }
+.bg-dusk   { background: var(--dusk);      color: var(--chalk); }
+.bg-chalk  { background: var(--chalk);     color: var(--dusk); }
+.bg-chalk h1, .bg-chalk h2, .bg-chalk h3, .bg-chalk h4 { color: var(--dusk); }
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+}
+.inner-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Brand mark texture */
+.mark-texture {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.05;
+  width: 50vw;
+  max-width: 720px;
+  right: -8vw;
+  bottom: -8vw;
+  z-index: 0;
+}
+
+/* CTAs */
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+.cta-primary {
+  background: var(--grad-h);
+  color: var(--dusk-deep);
+  border: 0;
+  font-weight: 400;
+}
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(250, 106, 116, 0.5);
+}
+.cta-secondary {
+  position: relative;
+  background: transparent;
+  color: var(--chalk);
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad-h);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.bg-chalk .cta-secondary {
+  background-image: linear-gradient(var(--chalk), var(--chalk)), var(--grad-h);
+  color: var(--dusk);
+}
+.cta-secondary:hover { transform: translateY(-2px); }
+.cta-secondary .grad-text { background: var(--grad-h); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero::before {
+  width: 60vw; height: 60vw;
+  left: -18vw; top: -20vw;
+  background: radial-gradient(circle, rgba(170, 33, 99, 0.35) 0%, transparent 60%);
+  animation: breathe1 16s ease-in-out infinite;
+}
+.hero::after {
+  width: 55vw; height: 55vw;
+  right: -20vw; bottom: -20vw;
+  background: radial-gradient(circle, rgba(252, 184, 121, 0.22) 0%, transparent 60%);
+  animation: breathe2 20s ease-in-out infinite;
+}
+@keyframes breathe1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
+@keyframes breathe2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
+
+.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+
+.hero-mark {
+  width: clamp(96px, 11vw, 168px);
+  height: auto;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: markEnter 1.5s var(--ease) 0.2s forwards, markFloat 6s ease-in-out 1.7s infinite;
+}
+@keyframes markEnter {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes markFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%     { transform: translateY(-12px) scale(1.02); }
+}
+
+.hero-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 1s forwards;
+}
+.hero-lockup .mark { width: 26px; height: 34px; }
+.hero-lockup .word { width: 132px; }
+.hero-lockup .word, .hero-lockup .word path { fill: var(--chalk); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero-statement {
+  font-family: var(--display);
+  font-weight: 100;
+  font-size: clamp(40px, 7vw, 108px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--chalk);
+  max-width: 1040px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 1.4s forwards;
+  text-wrap: balance;
+}
+.hero-statement .line2 { display: block; }
+.hero-statement em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hero-subline {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(15px, 1.3vw, 19px);
+  letter-spacing: 0.02em;
+  color: rgba(249, 248, 247, 0.55);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 1.8s forwards;
+}
+.hero-rule {
+  width: 80px;
+  height: 1px;
+  background: var(--grad-h);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 2.05s forwards;
+  position: relative;
+  overflow: hidden;
+}
+.hero-rule::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shimmer 4s linear 2.5s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+
+.hero-blurb {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.55;
+  color: rgba(249, 248, 247, 0.7);
+  max-width: 540px;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 2.25s forwards;
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease) 2.7s forwards;
+}
+.scroll-cue-text {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.4);
+}
+.scroll-cue-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, transparent, rgba(252, 184, 121, 0.8), transparent);
+  animation: scrollPulse 2.4s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CORE IDEA SECTION
+   ═══════════════════════════════════════════════════════════ */
+.core-idea { padding-top: clamp(120px, 16vh, 200px); padding-bottom: clamp(120px, 16vh, 200px); }
+.core-idea .eyebrow { color: var(--mulberry); opacity: 1; margin-bottom: 40px; }
+.core-idea-text {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.45;
+  color: var(--dusk);
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  text-wrap: balance;
+}
+.core-idea-text + .core-idea-text { margin-top: 28px; }
+.core-idea-text em { font-family: var(--serif); font-style: italic; }
+.core-callout {
+  margin-top: 80px;
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(28px, 4.2vw, 58px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.core-callout em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+/* ═══════════════════════════════════════════════════════════
+   NUMBERS
+   ═══════════════════════════════════════════════════════════ */
+.numbers { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); }
+.numbers .inner { display: flex; flex-direction: column; align-items: center; }
+.numbers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(40px, 6vw, 100px);
+  width: 100%;
+  margin-bottom: 80px;
+}
+@media (max-width: 760px) {
+  .numbers-row { grid-template-columns: 1fr; gap: 60px; }
+}
+.number-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.number-block + .number-block::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * clamp(20px, 3vw, 50px));
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(249, 248, 247, 0.12), transparent);
+}
+@media (max-width: 760px) {
+  .number-block + .number-block::before { display: none; }
+}
+.number-mega {
+  font-family: var(--display);
+  font-weight: 100;
+  font-size: clamp(80px, 13vw, 200px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+.number-label {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.3vw, 19px);
+  line-height: 1.45;
+  color: rgba(249, 248, 247, 0.7);
+  max-width: 280px;
+}
+.number-label em { font-style: italic; }
+.numbers-coda {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.4;
+  color: rgba(249, 248, 247, 0.6);
+  text-align: center;
+  max-width: 640px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROUTING CARDS
+   ═══════════════════════════════════════════════════════════ */
+.routing { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(120px, 16vh, 180px); }
+.routing-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.routing-h {
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 200;
+  max-width: 800px;
+  margin: 22px auto 0;
+  text-wrap: balance;
+}
+.routing-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 980px) {
+  .cards-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+}
+.route-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 36px 32px 32px;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.route-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -20px rgba(34, 27, 48, 0.18);
+}
+.route-card .icon-wrap {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.route-card .icon-wrap svg { width: 100%; height: auto; }
+.route-card h3 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(22px, 2vw, 28px);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.route-card h3 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.route-card p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  flex: 1;
+}
+.route-cta {
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 22px;
+  border-top: 1px solid currentColor;
+  border-color: rgba(255,255,255,0.18);
+  transition: gap 0.25s var(--ease);
+}
+.route-card:hover .route-cta { gap: 14px; }
+
+.route-dusk { background: var(--dusk); color: var(--chalk); }
+.route-dusk .icon-wrap svg path,
+.route-dusk .icon-wrap svg circle,
+.route-dusk .icon-wrap svg rect { stroke: var(--chalk); }
+.route-dusk p { color: rgba(249, 248, 247, 0.75); }
+.route-dusk .route-cta { border-color: rgba(249, 248, 247, 0.18); color: var(--chalk); }
+
+.route-chalk { background: var(--chalk); color: var(--dusk); border: 1px solid rgba(54, 43, 71, 0.12); }
+.route-chalk .icon-wrap svg path,
+.route-chalk .icon-wrap svg circle,
+.route-chalk .icon-wrap svg rect { stroke: var(--dusk); }
+.route-chalk p { color: rgba(54, 43, 71, 0.75); }
+.route-chalk .route-cta { border-color: rgba(54, 43, 71, 0.18); color: var(--dusk); }
+
+.route-grad {
+  background: var(--grad);
+  color: var(--dusk-deep);
+  position: relative;
+}
+.route-grad::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(255,255,255,0.18), transparent 60%);
+  pointer-events: none;
+}
+.route-grad .icon-wrap svg path,
+.route-grad .icon-wrap svg circle,
+.route-grad .icon-wrap svg rect { stroke: var(--dusk-deep); }
+.route-grad p { color: rgba(34, 27, 48, 0.8); position: relative; z-index: 1; }
+.route-grad h3, .route-grad .icon-wrap, .route-grad .route-cta { position: relative; z-index: 1; }
+.route-grad .route-cta { border-color: rgba(34, 27, 48, 0.25); color: var(--dusk-deep); }
+
+/* ═══════════════════════════════════════════════════════════
+   PLATFORM PREVIEW
+   ═══════════════════════════════════════════════════════════ */
+.platform { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); }
+.platform .inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.platform .eyebrow { color: var(--marmalade); opacity: 1; margin-bottom: 32px; }
+
+.preview-frame {
+  width: 100%;
+  max-width: 920px;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  background: linear-gradient(180deg, #1a1428 0%, #251c36 100%);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 36px;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6), 0 0 0 1px rgba(250, 106, 116, 0.08) inset;
+}
+.preview-chrome {
+  height: 36px;
+  border-bottom: 1px solid rgba(249, 248, 247, 0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 6px;
+  background: rgba(0,0,0,0.18);
+}
+.preview-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(249,248,247,0.16); }
+.preview-body {
+  padding: clamp(20px, 4vw, 56px);
+  height: calc(100% - 36px);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .preview-body { grid-template-columns: 1fr; gap: 24px; }
+}
+.preview-question {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: 1.25;
+  color: var(--chalk);
+  margin-bottom: 14px;
+  text-align: left;
+}
+.preview-question em { font-style: italic; }
+.preview-meta {
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.5);
+  margin-bottom: 22px;
+  text-align: left;
+}
+.preview-choices { display: flex; flex-direction: column; gap: 8px; }
+.preview-choice {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  font-family: var(--serif);
+  font-size: 14px;
+  color: rgba(249, 248, 247, 0.75);
+  text-align: left;
+  transition: all 0.3s var(--ease);
+}
+.preview-choice.selected {
+  background: rgba(252, 184, 121, 0.08);
+  border-color: rgba(252, 184, 121, 0.45);
+  color: var(--chalk);
+}
+.preview-choice .dot {
+  display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--grad-h);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.preview-card-wrap { display: flex; align-items: center; justify-content: center; }
+.career-card {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 14px;
+  background: rgba(249, 248, 247, 0.04);
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.career-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad-h);
+}
+.career-card-tag {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+  margin-bottom: 14px;
+}
+.career-card-title {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  color: var(--chalk);
+  margin-bottom: 6px;
+}
+.career-card-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(249, 248, 247, 0.6);
+  margin-bottom: 24px;
+}
+.career-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.career-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.45);
+  margin-bottom: 6px;
+}
+.career-stat-bar {
+  height: 3px; border-radius: 2px;
+  background: rgba(249,248,247,0.08);
+  overflow: hidden;
+}
+.career-stat-fill {
+  height: 100%;
+  background: var(--grad-h);
+  width: 0;
+  transition: width 1.2s var(--ease);
+}
+.career-card.in .career-stat-fill { width: var(--w, 70%); }
+.career-card-meta {
+  font-family: var(--serif);
+  font-size: 12px;
+  color: rgba(249, 248, 247, 0.55);
+  line-height: 1.45;
+  border-top: 1px solid rgba(249, 248, 247, 0.08);
+  padding-top: 14px;
+}
+
+.platform-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.4vw, 20px);
+  color: rgba(249, 248, 247, 0.6);
+  max-width: 560px;
+  line-height: 1.45;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CLOSING
+   ═══════════════════════════════════════════════════════════ */
+.closing {
+  background: var(--grad);
+  color: var(--dusk-deep);
+  text-align: center;
+  padding-top: clamp(120px, 18vh, 220px);
+  padding-bottom: clamp(120px, 18vh, 220px);
+  position: relative;
+  overflow: hidden;
+}
+.closing::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 10%, rgba(255,255,255,0.18), transparent 60%);
+  pointer-events: none;
+}
+.closing .inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.closing-mark {
+  width: clamp(72px, 8vw, 108px);
+  margin-bottom: 40px;
+}
+.closing-mark path { fill: var(--chalk) !important; }
+.closing-h {
+  font-family: var(--display);
+  font-weight: 100;
+  font-size: clamp(80px, 16vw, 220px);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--chalk);
+  margin-bottom: 28px;
+}
+.closing-wordmark {
+  width: clamp(260px, 46vw, 640px);
+  max-width: 92vw;
+  height: auto;
+  margin-bottom: 36px;
+}
+.closing-wordmark, .closing-wordmark path { fill: var(--chalk); }
+.closing-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.35;
+  color: rgba(249, 248, 247, 0.85);
+  max-width: 640px;
+  margin-bottom: 56px;
+  text-wrap: balance;
+}
+.closing-addr {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.36em;
+  color: rgba(249, 248, 247, 0.55);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER (shared)
+   ═══════════════════════════════════════════════════════════ */
+.footer {
+  background: var(--dusk-deep);
+  color: var(--chalk);
+  padding: 80px 24px 60px;
+  text-align: center;
+}
+.footer-lockup { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.footer-lockup .mark { width: 26px; height: 34px; }
+.footer-lockup .word { width: 112px; }
+.footer-lockup .word, .footer-lockup .word path { fill: var(--chalk); }
+.footer-addr {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: rgba(249, 248, 247, 0.4);
+  margin-bottom: 38px;
+}
+.footer-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: rgba(249, 248, 247, 0.75);
+  max-width: 520px;
+  margin: 0 auto 38px;
+  line-height: 1.4;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 24px;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(249, 248, 247, 0.55);
+}
+.footer-links a { transition: color 0.25s var(--ease); }
+.footer-links a:hover { color: var(--chalk); }
+.footer-rule {
+  width: 64px; height: 1px;
+  background: var(--grad-h);
+  margin: 0 auto 38px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FEEDBACK BUTTON
+   ═══════════════════════════════════════════════════════════ */
+.fb-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--chalk);
+  background: rgba(34, 27, 48, 0.85);
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(rgba(34, 27, 48, 0.92), rgba(34, 27, 48, 0.92)), var(--grad-h);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s var(--ease);
+}
+.fb-btn:hover { transform: translateY(-2px); }
+.fb-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(20, 16, 29, 0.7);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.fb-overlay.open { display: flex; }
+.fb-modal {
+  width: 100%; max-width: 480px;
+  background: var(--dusk-deep);
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  border-radius: 16px;
+  padding: 36px 32px 32px;
+  color: var(--chalk);
+}
+.fb-modal h3 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+.fb-modal .fb-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(249,248,247,0.6);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.fb-q { margin-bottom: 18px; }
+.fb-q-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.65);
+  margin-bottom: 10px;
+}
+.fb-options { display: flex; gap: 6px; }
+.fb-option {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(249, 248, 247, 0.12);
+  font-size: 12px;
+  color: var(--chalk);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+.fb-option:hover, .fb-option.active { background: rgba(252,184,121,0.08); border-color: var(--marmalade); }
+.fb-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(249, 248, 247, 0.12);
+  background: rgba(249, 248, 247, 0.02);
+  color: var(--chalk);
+  font-family: var(--serif);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s var(--ease);
+}
+.fb-input:focus { border-color: var(--ember); }
+.fb-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+.fb-close {
+  font-size: 11px;
+  color: rgba(249, 248, 247, 0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.fb-submit {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--grad-h);
+  color: var(--dusk-deep);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+.fb-thanks {
+  text-align: center;
+  padding: 20px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(249,248,247,0.8);
+}
+
+/* responsive */
+@media (max-width: 720px) {
+  .nav { height: 56px; }
+  .nav-brand .word { width: 70px; }
+  section { padding-left: 20px; padding-right: 20px; }
+  .preview-frame { aspect-ratio: auto; }
+  .preview-body { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ SVG SYMBOLS (brand mark + wordmark) ═══════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="heartily-grad" x1="257.54" y1="1300.29" x2="907.66" y2="171.78" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#aa2163"/>
+      <stop offset=".52" stop-color="#fa6a74"/>
+      <stop offset="1" stop-color="#fcb879"/>
+    </linearGradient>
+    <symbol id="brand-mark" viewBox="0 0 1121.86 1461.37">
+      <path fill="url(#heartily-grad)" d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+    </symbol>
+    <symbol id="brand-wordmark" viewBox="0 0 589.92 190.3">
+      <g>
+        <path d="M97.1,32.27c1.62-.29,3.31-.44,5.05-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v97.89c-.93.35-2.18.67-3.75.96-1.57.29-3.22.44-4.96.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7v-38.15h-48.59v45.46c-.93.35-2.15.67-3.66.96-1.51.29-3.19.44-5.05.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7V33.06c.93-.23,2.18-.49,3.74-.78,1.57-.29,3.22-.44,4.96-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v37.27h48.59v-44.76c.81-.23,2.03-.49,3.66-.78Z"/>
+        <path d="M145.7,107.25c1.62,6.62,4.79,11.53,9.49,14.72,4.7,3.19,10.71,4.79,18.03,4.79,4.88,0,9.35-.75,13.41-2.26,4.06-1.51,7.32-3.14,9.75-4.88,3.25,1.86,4.88,4.47,4.88,7.84,0,1.98-.76,3.81-2.26,5.49-1.51,1.68-3.57,3.13-6.18,4.35-2.61,1.22-5.69,2.18-9.23,2.87-3.54.7-7.34,1.05-11.41,1.05-6.74,0-12.86-.93-18.38-2.79-5.52-1.86-10.25-4.64-14.2-8.36-3.95-3.71-7-8.3-9.14-13.76-2.15-5.46-3.22-11.78-3.22-18.98s1.05-13.09,3.14-18.38c2.09-5.28,4.93-9.69,8.53-13.24,3.6-3.54,7.84-6.24,12.72-8.1,4.88-1.86,10.1-2.79,15.68-2.79s10.65.9,15.24,2.7c4.59,1.8,8.53,4.3,11.84,7.49,3.31,3.2,5.86,7,7.66,11.41,1.8,4.41,2.7,9.23,2.7,14.46,0,2.9-.7,5.02-2.09,6.36-1.39,1.34-3.43,2.24-6.1,2.7l-50.86,7.31ZM167.29,68.94c-6.39,0-11.7,2.15-15.94,6.44-4.24,4.3-6.47,10.45-6.71,18.46l42.85-6.1c-.47-5.22-2.38-9.67-5.75-13.32-3.37-3.66-8.19-5.49-14.46-5.49Z"/>
+        <path d="M246.72,54.83c10.8,0,19.39,2.35,25.78,7.05,6.38,4.7,9.58,12.11,9.58,22.21v40.58c0,2.67-.61,4.73-1.83,6.19s-2.87,2.82-4.96,4.09c-3.02,1.74-6.91,3.25-11.67,4.53-4.76,1.28-10.28,1.92-16.55,1.92-11.26,0-20.06-2.21-26.39-6.62-6.33-4.41-9.49-10.91-9.49-19.51,0-7.66,2.47-13.53,7.4-17.59,4.93-4.06,12.05-6.56,21.34-7.49l24.21-2.44v-3.83c0-5.11-1.65-8.82-4.96-11.15-3.31-2.32-7.93-3.48-13.85-3.48-4.65,0-9.12.64-13.41,1.92-4.3,1.28-8.13,2.73-11.5,4.35-1.16-.93-2.15-2.06-2.96-3.4-.81-1.34-1.22-2.82-1.22-4.44,0-1.97.49-3.6,1.48-4.88.98-1.28,2.52-2.38,4.62-3.31,3.25-1.62,6.97-2.81,11.15-3.57,4.18-.75,8.59-1.13,13.24-1.13ZM247.07,127.11c4.06,0,7.6-.4,10.62-1.22,3.02-.81,5.17-1.68,6.44-2.61v-22.12l-18.98,1.92c-5.34.58-9.35,1.77-12.02,3.57-2.67,1.8-4.01,4.56-4.01,8.27s1.45,6.82,4.35,8.97c2.9,2.15,7.43,3.22,13.59,3.22Z"/>
+        <path d="M316.56,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.05.44-4.79.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-57.13c0-2.9.58-5.25,1.74-7.05,1.16-1.8,3.02-3.51,5.57-5.14,3.37-2.09,7.66-3.83,12.89-5.22,5.23-1.39,10.97-2.09,17.24-2.09,10.22,0,15.33,2.9,15.33,8.71,0,1.39-.23,2.7-.7,3.92-.47,1.22-.99,2.29-1.57,3.22-1.16-.23-2.61-.46-4.35-.7-1.74-.23-3.6-.35-5.57-.35-4.65,0-8.88.5-12.72,1.48-3.83.99-7.08,2.24-9.75,3.74v63.57Z"/>
+        <path d="M381.35,123.8c2.44,1.74,5.86,2.61,10.28,2.61,1.97,0,4.06-.29,6.27-.87,2.2-.58,4.12-1.28,5.75-2.09.81.93,1.54,1.98,2.18,3.14.64,1.16.96,2.56.96,4.18,0,3.02-1.54,5.52-4.61,7.49-3.08,1.97-7.75,2.96-14.02,2.96-8.71,0-15.65-1.95-20.81-5.83-5.17-3.89-7.75-10.31-7.75-19.25V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.43,2.35,6.44v18.81h27c.46.7.9,1.68,1.31,2.96.41,1.28.61,2.61.61,4.01,0,4.99-2.15,7.49-6.44,7.49h-22.47v41.45c0,4.18,1.22,7.14,3.66,8.88Z"/>
+        <path d="M466.7,139.83c-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.86.64,7.49,1.92,1.63,1.28,2.44,3.43,2.44,6.44v98.24c-.93.35-2.12.67-3.57.96-1.45.29-3.05.44-4.79.44Z"/>
+        <path d="M508.67,119.8c-2.9-5.69-6.44-13.76-10.63-24.21-4.18-10.45-8.25-22.3-12.19-35.53,1.05-1.28,2.44-2.35,4.18-3.22,1.74-.87,3.6-1.31,5.57-1.31,2.55,0,4.64.61,6.27,1.83,1.62,1.22,2.96,3.34,4.01,6.36,3.14,9.41,6.38,18.67,9.75,27.78,3.37,9.12,7.08,18.55,11.15,28.3h.7c1.74-3.71,3.51-8.07,5.31-13.06,1.8-4.99,3.57-10.28,5.31-15.85,1.74-5.57,3.37-11.23,4.88-16.98,1.51-5.75,2.84-11.23,4.01-16.46,1.16-.58,2.35-1.04,3.57-1.39s2.64-.52,4.27-.52c2.55,0,4.7.61,6.44,1.83,1.74,1.22,2.61,3.11,2.61,5.66,0,3.02-.78,7.64-2.35,13.85-1.57,6.21-3.63,13.06-6.18,20.55-2.56,7.49-5.46,15.07-8.71,22.73-3.25,7.66-6.51,14.46-9.75,20.38-5.81,10.22-11.06,18-15.76,23.34-4.7,5.34-9.14,8.01-13.32,8.01-3.25,0-5.84-.9-7.75-2.7-1.92-1.8-3.11-4.04-3.57-6.71,1.86-1.63,3.89-3.6,6.1-5.92,2.2-2.32,4.41-4.82,6.62-7.49,2.2-2.67,4.29-5.43,6.27-8.27,1.97-2.84,3.66-5.6,5.05-8.27-1.98-.58-3.89-1.71-5.75-3.4-1.86-1.68-3.89-4.79-6.1-9.32Z"/>
+      </g>
+      <path d="M417.23,42.46c0-3.02,1.05-5.54,3.14-7.58,2.09-2.03,4.76-3.05,8.01-3.05s5.86,1.02,7.84,3.05c1.97,2.03,2.96,4.56,2.96,7.58s-.99,5.55-2.96,7.58c-1.98,2.03-4.59,3.05-7.84,3.05s-5.92-1.01-8.01-3.05c-2.09-2.03-3.14-4.55-3.14-7.58ZM437.44,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.11.44-4.96.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-63.4c.93-.23,2.12-.52,3.57-.87,1.45-.35,3.11-.52,4.96-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.48,2.35,6.62v63.23Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav" id="nav">
+  <a href="heartily-home.html" class="nav-brand" aria-label="Heartily home">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="nav-pills">
+    <a class="nav-pill" href="heartily-students.html">Students</a>
+    <a class="nav-pill" href="heartily-admins.html">Schools</a>
+    <a class="nav-pill" href="heartily-employers.html">Employers</a>
+    <a class="nav-pill" href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero bg-ink" data-screen-label="01 Hero">
+  <div class="hero-inner">
+    <svg class="hero-mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+
+    <div class="hero-lockup">
+      <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+      <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+    </div>
+
+    <div class="hero-statement">
+      Are you working hard?
+      <span class="line2">Or <em>heartily</em> working?</span>
+    </div>
+
+    <div class="hero-subline">There's a difference.</div>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-blurb italic">
+      Heartily helps students find the work they would do with their whole heart — before they commit to a path. And connects them to the employers and schools that make that possible.
+    </p>
+
+    <div class="scroll-cue">
+      <span class="scroll-cue-text">Scroll</span>
+      <span class="scroll-cue-line"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CORE IDEA ═══════ -->
+<section class="bg-chalk core-idea" data-screen-label="02 Core idea">
+  <div class="inner-narrow">
+    <p class="eyebrow reveal" style="text-align:center;">The idea</p>
+    <p class="core-idea-text reveal">
+      Most people spend their lives working hard at the wrong thing. Not because they lacked ability or ambition — because nobody helped them find the work worth doing <em>heartily</em>. With full investment. Genuine care. The sense that what they're doing matters.
+    </p>
+    <p class="core-idea-text reveal">
+      Heartily is built to change that. It gives students honest access to what real careers look and feel like, helps them understand what genuinely energizes them, and maps transparent paths forward. Then it connects them — to programs, to schools, to employers who want people who chose their field with open eyes.
+    </p>
+    <div class="core-callout reveal">
+      Every career is a craft.<br>Find the one you'd do <em class="grad-text">heartily</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ THE NUMBERS ═══════ -->
+<section class="bg-dusk numbers" data-screen-label="03 Numbers">
+  <div class="inner">
+    <div class="numbers-row">
+      <div class="number-block reveal">
+        <div class="number-mega" data-count="21" data-suffix="%">0%</div>
+        <p class="number-label">of employees worldwide are <em>engaged</em> at work.</p>
+      </div>
+      <div class="number-block reveal" style="transition-delay:120ms;">
+        <div class="number-mega" data-count="8.8" data-prefix="$" data-suffix="T" data-decimals="1">$0T</div>
+        <p class="number-label">lost globally each year to disengagement.</p>
+      </div>
+      <div class="number-block reveal" style="transition-delay:240ms;">
+        <div class="number-mega" data-count="17" data-suffix="">0</div>
+        <p class="number-label">the age when most career decisions get <em>made</em>.</p>
+      </div>
+    </div>
+    <p class="numbers-coda reveal" style="transition-delay:360ms;">The problem starts upstream. <em>Heartily works upstream.</em></p>
+  </div>
+</section>
+
+<!-- ═══════ ROUTING ═══════ -->
+<section class="bg-chalk routing" data-screen-label="04 Who it's for">
+  <div class="inner">
+    <div class="routing-head">
+      <p class="eyebrow reveal">Who Heartily is for</p>
+      <h2 class="routing-h reveal" style="transition-delay:100ms;">
+        Heartily works for <em>everyone</em><br>in the equation.
+      </h2>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1: Students -->
+      <a class="route-card route-dusk reveal" href="heartily-students.html" style="transition-delay:200ms;">
+        <div class="icon-wrap" aria-hidden="true">
+          <!-- mark with outward glow -->
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+            <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-opacity="0.12" stroke-width="1"/>
+            <g transform="translate(20,16) scale(0.022)">
+              <path fill="url(#heartily-grad)" d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+            </g>
+          </svg>
+        </div>
+        <h3>For students &amp; <em>families</em></h3>
+        <p>Find out what careers actually feel like before you commit to one. Free, honest, and built around what you'd genuinely do heartily — not what pays well or sounds impressive.</p>
+        <span class="route-cta">Explore as a student <span aria-hidden="true">→</span></span>
+      </a>
+
+      <!-- Card 2: Schools -->
+      <a class="route-card route-chalk reveal" href="heartily-admins.html" style="transition-delay:320ms;">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2">
+            <rect x="10" y="20" width="44" height="32" rx="2" stroke="currentColor"/>
+            <path d="M10 20 L32 8 L54 20" stroke="currentColor"/>
+            <path d="M22 52 V36 H42 V52" stroke="currentColor"/>
+            <path d="M32 36 V52" stroke="currentColor"/>
+          </svg>
+        </div>
+        <h3>For schools &amp; <em>districts</em></h3>
+        <p>Give your students a career guidance tool they'll actually use. Heartily extends your guidance team's reach with honest career content, student interest data, and outcomes you can report.</p>
+        <span class="route-cta">Learn about partnerships <span aria-hidden="true">→</span></span>
+      </a>
+
+      <!-- Card 3: Employers -->
+      <a class="route-card route-grad reveal" href="heartily-employers.html" style="transition-delay:440ms;">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke-width="1.4">
+            <path d="M14 28 L32 14 L50 28" stroke="currentColor"/>
+            <path d="M14 28 V52 H50 V28" stroke="currentColor"/>
+            <circle cx="32" cy="40" r="6" stroke="currentColor"/>
+            <path d="M26 52 Q32 46 38 52" stroke="currentColor"/>
+          </svg>
+        </div>
+        <h3>For <em>employers</em></h3>
+        <p>A talent pipeline built on genuine interest, not cold applications. Heartily candidates have already spent weeks understanding what your industry actually involves. They chose your field with open eyes.</p>
+        <span class="route-cta">See how the pipeline works <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PLATFORM PREVIEW ═══════ -->
+<section class="bg-ink platform" data-screen-label="05 Platform preview">
+  <div class="inner">
+    <p class="eyebrow reveal">The platform</p>
+    <h2 class="reveal" style="font-size:clamp(28px,3.4vw,46px); margin: 20px 0 60px; font-weight:200; text-align:center;">One question, asked seriously, again and again.</h2>
+
+    <div class="preview-frame reveal" style="transition-delay:200ms;">
+      <div class="preview-chrome">
+        <span class="preview-dot"></span>
+        <span class="preview-dot"></span>
+        <span class="preview-dot"></span>
+      </div>
+      <div class="preview-body">
+        <div>
+          <div class="preview-meta">Master Electrician · Tuesday</div>
+          <p class="preview-question">
+            <em>Would you do this</em><br>heartily?
+          </p>
+          <div class="preview-choices">
+            <div class="preview-choice"><span class="dot"></span>No — not for me</div>
+            <div class="preview-choice"><span class="dot"></span>Not sure yet</div>
+            <div class="preview-choice selected"><span class="dot"></span>Yes — I'd be glad to</div>
+          </div>
+        </div>
+        <div class="preview-card-wrap">
+          <div class="career-card">
+            <div class="career-card-tag">Skilled Trade</div>
+            <div class="career-card-title">Master Electrician</div>
+            <div class="career-card-sub italic">Solo problem-solving, done by 5pm</div>
+            <div class="career-card-stats">
+              <div>
+                <div class="career-stat-label">Autonomy</div>
+                <div class="career-stat-bar"><div class="career-stat-fill" style="--w:82%;"></div></div>
+              </div>
+              <div>
+                <div class="career-stat-label">Meaning</div>
+                <div class="career-stat-bar"><div class="career-stat-fill" style="--w:74%;"></div></div>
+              </div>
+              <div>
+                <div class="career-stat-label">Pay range</div>
+                <div class="career-stat-bar"><div class="career-stat-fill" style="--w:60%;"></div></div>
+              </div>
+              <div>
+                <div class="career-stat-label">Day length</div>
+                <div class="career-stat-bar"><div class="career-stat-fill" style="--w:45%;"></div></div>
+              </div>
+            </div>
+            <div class="career-card-meta">7yr path · journeyman → master. Apprenticeship-paid, not student-debt-funded.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="platform-caption reveal" style="transition-delay:300ms;">
+      <em>What a Tuesday actually feels like — before you decide it's the right one.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════ CLOSING ═══════ -->
+<section class="closing" data-screen-label="06 Closing">
+  <div class="inner">
+    <svg class="closing-mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true">
+      <path d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+    </svg>
+    <svg class="closing-wordmark" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+    <p class="closing-tag"><em>Find the work you'd do<br>with your whole heart.</em></p>
+    <div class="closing-addr">HEARTILY.WORK</div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <a href="heartily-home.html" class="footer-lockup">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="footer-addr">HEARTILY.WORK</div>
+  <p class="footer-tag"><em>Find the work you'd do with your whole heart.</em></p>
+  <div class="footer-rule"></div>
+  <div class="footer-links">
+    <a href="heartily-students.html">Students &amp; Families</a>
+    <a href="heartily-admins.html">School Administrators</a>
+    <a href="heartily-employers.html">Employers</a>
+    <a href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</footer>
+
+<!-- ═══════ FEEDBACK ═══════ -->
+<button class="fb-btn" id="fbBtn">Share feedback</button>
+<div class="fb-overlay" id="fbOverlay" role="dialog" aria-modal="true">
+  <div class="fb-modal">
+    <div id="fbForm">
+      <h3>A few quick questions.</h3>
+      <p class="fb-sub italic">Help us make this clearer for the next person who lands here.</p>
+      <div class="fb-q">
+        <div class="fb-q-label">Does this feel relevant to you?</div>
+        <div class="fb-options" data-q="relevance">
+          <button class="fb-option" data-v="Yes">Yes</button>
+          <button class="fb-option" data-v="Somewhat">Somewhat</button>
+          <button class="fb-option" data-v="No">No</button>
+        </div>
+      </div>
+      <div class="fb-q">
+        <div class="fb-q-label">Most interesting thing on this page?</div>
+        <input class="fb-input" id="fbInteresting" type="text" placeholder="In a few words…">
+      </div>
+      <div class="fb-q">
+        <div class="fb-q-label">What's missing?</div>
+        <input class="fb-input" id="fbMissing" type="text" placeholder="In a few words…">
+      </div>
+      <div class="fb-actions">
+        <button class="fb-close" id="fbCancel">Close</button>
+        <button class="fb-submit" id="fbSubmit">Send</button>
+      </div>
+    </div>
+    <div id="fbThanks" style="display:none;">
+      <p class="fb-thanks"><em>Thank you. This goes straight to the team.</em></p>
+      <div class="fb-actions" style="justify-content:center;">
+        <button class="fb-close" id="fbDone">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── Nav scroll state ─── */
+const nav = document.getElementById('nav');
+let lightSections = null;
+function updateNavBg() {
+  const y = window.scrollY + 32;
+  const sections = document.querySelectorAll('section, footer');
+  let active = null;
+  sections.forEach(s => {
+    const r = s.getBoundingClientRect();
+    const top = r.top + window.scrollY;
+    if (y >= top && y < top + r.height) active = s;
+  });
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+  nav.classList.toggle('scrolled-light', !!(active && active.classList.contains('bg-chalk')));
+}
+window.addEventListener('scroll', updateNavBg, { passive: true });
+updateNavBg();
+
+/* ─── IntersectionObserver reveal ─── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+/* ─── Stat count-ups ─── */
+const countEls = document.querySelectorAll('[data-count]');
+const countIO = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseFloat(el.dataset.count);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const dur = 1800;
+    const start = performance.now();
+    function tick(t) {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = (target * eased).toFixed(decimals);
+      el.textContent = prefix + v + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    countIO.unobserve(el);
+  });
+}, { threshold: 0.5 });
+countEls.forEach((el) => countIO.observe(el));
+
+/* ─── Career card stat bars ─── */
+const cardIO = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      cardIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.career-card').forEach((c) => cardIO.observe(c));
+
+/* ─── Feedback modal ─── */
+const fbBtn = document.getElementById('fbBtn');
+const fbOverlay = document.getElementById('fbOverlay');
+const fbForm = document.getElementById('fbForm');
+const fbThanks = document.getElementById('fbThanks');
+function openFb() { fbOverlay.classList.add('open'); }
+function closeFb() { fbOverlay.classList.remove('open'); }
+fbBtn.addEventListener('click', openFb);
+document.getElementById('fbCancel').addEventListener('click', closeFb);
+document.getElementById('fbDone').addEventListener('click', () => {
+  closeFb();
+  fbForm.style.display = 'block';
+  fbThanks.style.display = 'none';
+});
+fbOverlay.addEventListener('click', (e) => { if (e.target === fbOverlay) closeFb(); });
+let fbRelevance = null;
+document.querySelectorAll('.fb-options .fb-option').forEach((b) => {
+  b.addEventListener('click', () => {
+    b.parentElement.querySelectorAll('.fb-option').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    fbRelevance = b.dataset.v;
+  });
+});
+document.getElementById('fbSubmit').addEventListener('click', () => {
+  const data = {
+    page: 'heartily-home',
+    relevance: fbRelevance,
+    interesting: document.getElementById('fbInteresting').value,
+    missing: document.getElementById('fbMissing').value,
+    ts: new Date().toISOString(),
+  };
+  console.log('[Heartily feedback]', data);
+  fbForm.style.display = 'none';
+  fbThanks.style.display = 'block';
+});
+</script>
+
+<template id="__bundler_thumbnail" data-bg-color="#14101D">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="thumb-grad" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#aa2163"/>
+        <stop offset=".52" stop-color="#fa6a74"/>
+        <stop offset="1" stop-color="#fcb879"/>
+      </linearGradient>
+    </defs>
+    <g transform="translate(540 220) scale(0.25)">
+      <path fill="url(#thumb-grad)" d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+    </g>
+  </svg>
+</template>
+
+</body>
+</html>
