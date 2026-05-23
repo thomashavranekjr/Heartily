@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartily for Employers — A talent pipeline built on genuine interest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --chalk:     #F9F8F7;
+  --chalk-2:   #EFEDE9;
+  --dusk:      #362B47;
+  --dusk-deep: #221B30;
+  --dusk-ink:  #14101D;
+  --marmalade: #FCB879;
+  --ember:     #FA6A74;
+  --mulberry:  #AA2163;
+  --grad:   linear-gradient(135deg, #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --grad-h: linear-gradient(90deg,  #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --display: 'Lexend Giga', system-ui, sans-serif;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--display); color: var(--dusk); background: var(--chalk); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+button, a { font: inherit; color: inherit; cursor: pointer; }
+button { background: none; border: 0; }
+a { text-decoration: none; }
+em { font-style: italic; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 200; letter-spacing: -0.02em; line-height: 1.05; }
+.serif { font-family: var(--serif); font-style: normal; }
+.italic { font-family: var(--serif); font-style: italic; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.eyebrow { font-family: var(--display); font-size: 10px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.55; }
+
+/* nav */
+.nav { position: fixed; inset: 0 0 auto 0; height: 64px; padding: 0 clamp(20px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; z-index: 100; transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease); border-bottom: 1px solid transparent; }
+.nav.scrolled { background: rgba(20,16,29,0.78); backdrop-filter: blur(18px); border-bottom-color: rgba(249,248,247,0.06); }
+.nav.scrolled-light { background: rgba(249,248,247,0.82); backdrop-filter: blur(18px); border-bottom-color: rgba(54,43,71,0.06); }
+.nav-brand { display: flex; align-items: center; gap: 10px; color: var(--chalk); transition: color 0.4s var(--ease); }
+.nav.scrolled-light .nav-brand { color: var(--dusk); }
+.nav-brand .mark { width: 22px; height: 28px; }
+.nav-brand .word { width: 92px; }
+.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-pills { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid rgba(249,248,247,0.12); background: rgba(249,248,247,0.02); transition: border-color 0.4s var(--ease), background 0.4s var(--ease); }
+.nav.scrolled-light .nav-pills { border-color: rgba(54,43,71,0.12); background: rgba(54,43,71,0.02); }
+.nav-pill { padding: 8px 14px; border-radius: 999px; font-size: 11px; font-weight: 300; letter-spacing: 0.08em; color: rgba(249,248,247,0.62); transition: all 0.25s var(--ease); white-space: nowrap; }
+.nav.scrolled-light .nav-pill { color: rgba(54,43,71,0.58); }
+.nav-pill:hover { color: var(--chalk); background: rgba(249,248,247,0.06); }
+.nav.scrolled-light .nav-pill:hover { color: var(--dusk); background: rgba(54,43,71,0.05); }
+.nav-pill.active { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
+.nav-pill.active:hover { color: var(--dusk-deep); }
+@media (max-width: 720px) { .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; } }
+@media (max-width: 480px) {
+  .nav { padding: 0 14px; }
+  .nav-brand .word { display: none; }
+  .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
+  .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
+}
+
+section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw, 80px); overflow: hidden; }
+.bg-deep { background: var(--dusk-deep); color: var(--chalk); }
+.bg-dusk { background: var(--dusk); color: var(--chalk); }
+.bg-ink { background: var(--dusk-ink); color: var(--chalk); }
+.bg-chalk { background: var(--chalk); color: var(--dusk); }
+.bg-chalk h1, .bg-chalk h2, .bg-chalk h3, .bg-chalk h4 { color: var(--dusk); }
+.inner { max-width: 1240px; margin: 0 auto; position: relative; }
+.inner-narrow { max-width: 820px; margin: 0 auto; position: relative; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 8px; font-family: var(--display); font-size: 13px; font-weight: 300; letter-spacing: 0.04em; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+.cta-primary { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(250,106,116,0.5); }
+.cta-secondary { position: relative; background: transparent; border: 1.5px solid transparent; background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad-h); background-origin: border-box; background-clip: padding-box, border-box; color: var(--chalk); }
+.cta-secondary.on-chalk { background-image: linear-gradient(var(--chalk), var(--chalk)), var(--grad-h); color: var(--dusk); }
+.cta-secondary:hover { transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — Bold, gradient lit
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 120px; padding-bottom: 120px;
+  background: var(--dusk-deep); color: var(--chalk);
+  position: relative;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 100% 30%, rgba(170, 33, 99, 0.4), transparent 60%),
+    radial-gradient(ellipse 50% 55% at 0% 80%, rgba(252, 184, 121, 0.18), transparent 65%);
+  pointer-events: none;
+}
+.hero-mark-bg {
+  position: absolute;
+  left: -10vw; top: 0;
+  width: 70vw; max-width: 1100px;
+  opacity: 0.04;
+  z-index: 0;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; width: 100%; }
+.hero-eyebrow {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--marmalade); opacity: 0.9;
+  margin-bottom: 32px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--grad-h); }
+.hero-h1 {
+  font-family: var(--display); font-weight: 100;
+  font-size: clamp(46px, 8.6vw, 132px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  margin-bottom: 36px;
+  max-width: 1100px;
+  text-wrap: balance;
+}
+.hero-h1 .l1 { display: block; color: var(--chalk); }
+.hero-h1 .l2 { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; color: rgba(249,248,247,0.55); }
+.hero-h1 em.accent {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.5;
+  color: rgba(249, 248, 247, 0.72);
+  max-width: 760px;
+  margin-bottom: 44px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROBLEM
+   ═══════════════════════════════════════════════════════════ */
+.problem { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); background: var(--chalk); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+@media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; } }
+.problem-h {
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 200; letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 22px 0 28px;
+  text-wrap: balance;
+}
+.problem-h em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--mulberry); }
+.problem-body {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.55;
+  color: rgba(54, 43, 71, 0.78);
+  max-width: 540px;
+}
+.problem-body + .problem-body { margin-top: 18px; }
+
+.problem-stats {
+  display: flex; flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(54, 43, 71, 0.12);
+  margin-top: 12px;
+}
+.problem-stat {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.55fr) 1fr;
+  gap: 36px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(54, 43, 71, 0.1);
+  align-items: baseline;
+}
+.problem-stat-n {
+  font-family: var(--display); font-weight: 100;
+  font-size: clamp(48px, 5.6vw, 76px);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.problem-stat-l {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.45;
+  color: rgba(54, 43, 71, 0.72);
+}
+.problem-stat-l strong { font-weight: 400; color: var(--dusk); }
+.problem-coda {
+  margin-top: 28px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: rgba(54, 43, 71, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DIFFERENTIATORS (dusk)
+   ═══════════════════════════════════════════════════════════ */
+.diff { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.diff-head { text-align: center; max-width: 880px; margin: 0 auto 80px; }
+.diff-h {
+  font-size: clamp(36px, 4.8vw, 68px);
+  font-weight: 200; letter-spacing: -0.02em;
+  line-height: 1.02;
+  margin: 22px auto 0;
+  text-wrap: balance;
+}
+.diff-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.diff-h em.grad {
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.diff-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 980px) { .diff-list { grid-template-columns: 1fr; } }
+.diff-card {
+  padding: 36px 32px 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  background: rgba(249, 248, 247, 0.02);
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.diff-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-h);
+  opacity: 0.6;
+}
+.diff-card-num {
+  font-family: var(--display); font-weight: 100;
+  font-size: 60px;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--chalk);
+  margin-bottom: 32px;
+  opacity: 0.85;
+}
+.diff-card-num .grad-text { background: var(--grad-h); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.diff-card-h {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.15; letter-spacing: -0.015em;
+  margin-bottom: 18px;
+  color: var(--chalk);
+}
+.diff-card-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.diff-card-body {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.25vw, 17px);
+  line-height: 1.55;
+  color: rgba(249, 248, 247, 0.72);
+}
+.diff-card-tag {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(249, 248, 247, 0.08);
+  font-family: var(--display);
+  font-size: 10px; font-weight: 300; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+  margin-top: 28px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROI FRAME
+   ═══════════════════════════════════════════════════════════ */
+.roi { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.roi-head { text-align: center; max-width: 820px; margin: 0 auto 64px; }
+.roi-h {
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 200; letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 22px auto 22px;
+  text-wrap: balance;
+}
+.roi-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.roi-sub {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: rgba(54, 43, 71, 0.7);
+  font-style: italic;
+}
+
+.roi-calc {
+  max-width: 1000px; margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid rgba(54, 43, 71, 0.1);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+.roi-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  padding: 26px 36px;
+  align-items: center;
+  border-bottom: 1px solid rgba(54, 43, 71, 0.08);
+}
+.roi-row:last-child { border-bottom: 0; }
+.roi-row.total {
+  background: var(--dusk-deep);
+  color: var(--chalk);
+  padding: 38px 36px;
+}
+.roi-row-label {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.45;
+  color: rgba(54, 43, 71, 0.82);
+}
+.roi-row-label .meta {
+  display: block;
+  font-family: var(--display);
+  font-size: 10px; font-weight: 300; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(54, 43, 71, 0.5);
+  margin-bottom: 4px;
+}
+.roi-row.total .roi-row-label { color: rgba(249, 248, 247, 0.85); font-style: italic; }
+.roi-row.total .roi-row-label .meta { color: var(--marmalade); }
+.roi-row-value {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(24px, 2.6vw, 36px);
+  letter-spacing: -0.025em;
+  color: var(--dusk);
+  text-align: right;
+  white-space: nowrap;
+}
+.roi-row.total .roi-row-value {
+  font-weight: 100;
+  font-size: clamp(36px, 4.4vw, 60px);
+  background: var(--grad-h);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.roi-row-value .pos { color: var(--mulberry); }
+.roi-row-value .neg { color: rgba(54,43,71,0.5); font-weight: 300; }
+
+.roi-foot {
+  text-align: center;
+  margin-top: 32px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: rgba(54, 43, 71, 0.55);
+  max-width: 720px;
+  margin-left: auto; margin-right: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EMPLOYER PLATFORM PREVIEW
+   ═══════════════════════════════════════════════════════════ */
+.emp-preview { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.emp-preview-head { text-align: center; max-width: 820px; margin: 0 auto 64px; }
+.emp-preview-h {
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 200; letter-spacing: -0.02em;
+  margin: 22px auto 0; line-height: 1.04;
+}
+.emp-preview-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.browser {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  background: #0d0918;
+  overflow: hidden;
+  box-shadow: 0 60px 100px -40px rgba(0,0,0,0.7), 0 0 0 1px rgba(250,106,116,0.05) inset;
+}
+.browser-chrome {
+  height: 36px; padding: 0 14px;
+  border-bottom: 1px solid rgba(249,248,247,0.08);
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(0,0,0,0.2);
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dots span { width: 9px; height: 9px; border-radius: 50%; background: rgba(249,248,247,0.16); }
+.browser-url {
+  font-family: var(--display); font-size: 10px; font-weight: 300;
+  color: rgba(249,248,247,0.45);
+  letter-spacing: 0.04em;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(249,248,247,0.04);
+  min-width: 280px;
+  text-align: center;
+}
+.emp-dash {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 600px;
+}
+@media (max-width: 880px) { .emp-dash { grid-template-columns: 1fr; } }
+
+.emp-list {
+  border-right: 1px solid rgba(249, 248, 247, 0.06);
+  padding: 28px;
+  background: rgba(20,16,29,0.6);
+}
+@media (max-width: 880px) { .emp-list { border-right: 0; border-bottom: 1px solid rgba(249,248,247,0.06); } }
+.emp-list-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 20px;
+}
+.emp-list-h {
+  font-family: var(--display); font-weight: 200; font-size: 22px;
+  letter-spacing: -0.015em;
+  color: var(--chalk);
+}
+.emp-list-filter {
+  font-family: var(--serif); font-size: 12px;
+  color: var(--marmalade);
+  font-style: italic;
+}
+.emp-search {
+  border-radius: 10px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  background: rgba(249, 248, 247, 0.03);
+  padding: 12px 14px;
+  font-family: var(--serif);
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(249, 248, 247, 0.6);
+  margin-bottom: 18px;
+  position: relative;
+}
+.emp-search::before {
+  content: ""; position: absolute; left: -1px; top: -1px; bottom: -1px; width: 2px;
+  background: var(--grad-v);
+}
+.emp-candidates { display: flex; flex-direction: column; gap: 8px; }
+.emp-candidate {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(249, 248, 247, 0.06);
+  background: rgba(249, 248, 247, 0.02);
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.emp-candidate:hover { border-color: rgba(252,184,121,0.3); }
+.emp-candidate.active {
+  border-color: rgba(252,184,121,0.5);
+  background: rgba(252,184,121,0.05);
+}
+.emp-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 300; font-size: 13px;
+  color: var(--dusk-deep);
+}
+.emp-cand-name {
+  font-family: var(--display); font-weight: 300; font-size: 13px;
+  color: var(--chalk);
+  margin-bottom: 3px;
+}
+.emp-cand-meta {
+  font-family: var(--serif); font-style: italic;
+  font-size: 11px;
+  color: rgba(249, 248, 247, 0.55);
+}
+.emp-cand-score {
+  text-align: right;
+}
+.emp-cand-score-n {
+  font-family: var(--display); font-weight: 200;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--marmalade);
+}
+.emp-cand-score-l {
+  font-size: 8px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.4);
+  margin-top: 2px;
+}
+
+.emp-detail { padding: 28px; min-width: 0; }
+.emp-detail-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+.emp-detail-name {
+  font-family: var(--display); font-weight: 200;
+  font-size: 22px;
+  color: var(--chalk);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+.emp-detail-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: 13px; color: rgba(249, 248, 247, 0.55);
+}
+.emp-detail-score {
+  text-align: right;
+  flex-shrink: 0;
+}
+.emp-detail-score-n {
+  font-family: var(--display); font-weight: 100;
+  font-size: 40px;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  background: var(--grad-h);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.emp-detail-score-l {
+  font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+}
+
+.emp-section-h {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(249, 248, 247, 0.45);
+  margin: 20px 0 10px;
+}
+.emp-explored {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 4px;
+}
+.emp-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(249, 248, 247, 0.1);
+  font-family: var(--serif);
+  font-size: 11px;
+  color: rgba(249, 248, 247, 0.7);
+}
+.emp-chip.primary {
+  background: rgba(252, 184, 121, 0.08);
+  border-color: rgba(252, 184, 121, 0.35);
+  color: var(--marmalade);
+}
+
+.emp-signals {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 12px;
+}
+.emp-signal {
+  display: grid; grid-template-columns: 130px 1fr 40px;
+  gap: 10px; align-items: center;
+}
+.emp-signal-l {
+  font-family: var(--serif); font-size: 12px;
+  color: rgba(249, 248, 247, 0.7);
+}
+.emp-signal-bar {
+  height: 4px; border-radius: 2px;
+  background: rgba(249, 248, 247, 0.06);
+  overflow: hidden;
+}
+.emp-signal-fill {
+  height: 100%; background: var(--grad-h); border-radius: 2px;
+  width: 0; transition: width 1.4s var(--ease);
+}
+.browser.in .emp-signal-fill { width: var(--w, 50%); }
+.emp-signal-v {
+  font-family: var(--display); font-size: 11px;
+  color: rgba(249, 248, 247, 0.65);
+  text-align: right;
+}
+
+.emp-quote {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 2px solid var(--marmalade);
+  background: rgba(252, 184, 121, 0.04);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(249, 248, 247, 0.8);
+}
+.emp-quote-attr {
+  font-family: var(--display); font-style: normal;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--marmalade);
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTNERSHIP STRUCTURE
+   ═══════════════════════════════════════════════════════════ */
+.partnership { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); background: var(--chalk); }
+.partnership-head { text-align: center; margin-bottom: 64px; }
+.partnership-h {
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 200; letter-spacing: -0.02em;
+  margin: 22px auto 0; line-height: 1.04;
+}
+.partnership-h em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--mulberry); }
+
+.part-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 32px;
+}
+@media (max-width: 880px) { .part-grid { grid-template-columns: 1fr; } }
+.part-card {
+  padding: 40px 36px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(54, 43, 71, 0.1);
+  display: flex; flex-direction: column;
+}
+.part-card.feature {
+  background: var(--dusk-deep);
+  color: var(--chalk);
+  border: 0;
+  position: relative;
+  overflow: hidden;
+}
+.part-card.feature::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad-h);
+}
+.part-card-eyebrow {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mulberry);
+  margin-bottom: 14px;
+}
+.part-card.feature .part-card-eyebrow { color: var(--marmalade); }
+.part-card-h {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(24px, 2.4vw, 32px);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+.part-card.feature .part-card-h { color: var(--chalk); }
+.part-card-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.part-card-body {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.25vw, 17px);
+  line-height: 1.55;
+  color: rgba(54, 43, 71, 0.75);
+  margin-bottom: 24px;
+}
+.part-card.feature .part-card-body { color: rgba(249, 248, 247, 0.72); }
+.part-list { display: flex; flex-direction: column; gap: 10px; }
+.part-li {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(54, 43, 71, 0.75);
+  padding-left: 22px;
+  position: relative;
+}
+.part-li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 12px; height: 1px;
+  background: var(--grad-h);
+}
+.part-card.feature .part-li { color: rgba(249, 248, 247, 0.78); }
+
+.part-note {
+  max-width: 880px; margin: 0 auto;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.5;
+  color: rgba(54, 43, 71, 0.6);
+  padding-top: 28px;
+  border-top: 1px solid rgba(54, 43, 71, 0.12);
+}
+.part-note strong { font-weight: 400; color: var(--dusk); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════
+   MISSION AS FEATURE
+   ═══════════════════════════════════════════════════════════ */
+.mission { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.mission-inner {
+  max-width: 880px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+@media (max-width: 720px) { .mission-inner { grid-template-columns: 1fr; gap: 24px; } }
+.mission-mark {
+  width: 80px; flex-shrink: 0;
+  opacity: 0.8;
+}
+.mission-eyebrow {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+  margin-bottom: 22px;
+}
+.mission-h {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(26px, 3.2vw, 40px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 22px;
+  color: var(--chalk);
+  text-wrap: balance;
+}
+.mission-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.mission-body {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: rgba(249, 248, 247, 0.72);
+}
+.mission-body strong { font-weight: 400; color: var(--chalk); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════
+   VOICES
+   ═══════════════════════════════════════════════════════════ */
+.voices { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); background: var(--chalk); }
+.voices-head { text-align: center; margin-bottom: 64px; }
+.voices-h {
+  font-size: clamp(28px, 3.2vw, 44px); font-weight: 200; letter-spacing: -0.02em;
+  margin-top: 22px;
+  max-width: 720px;
+  margin-left: auto; margin-right: auto;
+  text-wrap: balance;
+}
+.voices-h em { font-style: italic; font-family: var(--serif); }
+.voices-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1100px; margin: 0 auto;
+}
+@media (max-width: 800px) { .voices-list { grid-template-columns: 1fr; } }
+.voice {
+  position: relative;
+  padding: 32px 32px 28px 36px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(54, 43, 71, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.voice::before {
+  content: ""; position: absolute; left: 0; top: 28px; bottom: 28px;
+  width: 3px; background: var(--grad-v);
+  border-radius: 0 2px 2px 0;
+}
+.voice-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.5;
+  color: var(--dusk);
+  margin-bottom: 18px;
+}
+.voice-attr {
+  font-family: var(--display);
+  font-size: 10px; font-weight: 300; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(54, 43, 71, 0.6);
+}
+.voice-attr .label {
+  display: block;
+  font-size: 9px; letter-spacing: 0.22em;
+  color: rgba(170, 33, 99, 0.7);
+  margin-bottom: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FINAL CTA
+   ═══════════════════════════════════════════════════════════ */
+.final-cta {
+  padding-top: clamp(120px, 18vh, 200px);
+  padding-bottom: clamp(120px, 18vh, 200px);
+  background: var(--dusk-deep);
+  color: var(--chalk);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 80% 20%, rgba(170,33,99,0.28), transparent 65%),
+    radial-gradient(ellipse 50% 45% at 20% 80%, rgba(252,184,121,0.16), transparent 65%);
+  pointer-events: none;
+}
+.final-cta-mark { position: absolute; left: -14vw; bottom: -14vw; width: 50vw; max-width: 700px; opacity: 0.06; pointer-events: none; }
+.final-cta-mark path { fill: var(--chalk) !important; }
+.final-cta-inner { position: relative; z-index: 1; }
+.final-cta-h {
+  font-family: var(--display); font-weight: 100;
+  font-size: clamp(44px, 8vw, 124px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 28px;
+}
+.final-cta-h em {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.final-cta-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px, 1.5vw, 22px);
+  color: rgba(249,248,247,0.7);
+  margin-bottom: 48px;
+}
+.final-cta-contact {
+  margin-top: 36px;
+  font-family: var(--display);
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.16em;
+  color: rgba(249,248,247,0.55);
+}
+.final-cta-contact a {
+  color: var(--marmalade);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s var(--ease);
+}
+.final-cta-contact a:hover { border-color: var(--marmalade); }
+
+/* Footer */
+.footer { background: var(--dusk-ink); color: var(--chalk); padding: 80px 24px 60px; text-align: center; }
+.footer-lockup { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.footer-lockup .mark { width: 26px; height: 34px; }
+.footer-lockup .word { width: 112px; }
+.footer-lockup .word, .footer-lockup .word path { fill: var(--chalk); }
+.footer-addr { font-family: var(--display); font-weight: 300; font-size: 10px; letter-spacing: 0.32em; color: rgba(249,248,247,0.4); margin-bottom: 38px; }
+.footer-tag { font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.6vw,22px); color: rgba(249,248,247,0.75); max-width: 520px; margin: 0 auto 38px; line-height: 1.4; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: 12px; font-weight: 300; letter-spacing: 0.05em; color: rgba(249,248,247,0.55); }
+.footer-links a { transition: color 0.25s var(--ease); }
+.footer-links a:hover { color: var(--chalk); }
+.footer-rule { width: 64px; height: 1px; background: var(--grad-h); margin: 0 auto 38px; }
+
+/* feedback */
+.fb-btn { position: fixed; bottom: 24px; right: 24px; z-index: 90; padding: 10px 16px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; color: var(--chalk); border-radius: 999px; border: 1.5px solid transparent; background-image: linear-gradient(rgba(34,27,48,0.92), rgba(34,27,48,0.92)), var(--grad-h); background-origin: border-box; background-clip: padding-box, border-box; backdrop-filter: blur(10px); transition: transform 0.25s var(--ease); }
+.fb-btn:hover { transform: translateY(-2px); }
+.fb-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(20,16,29,0.7); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.fb-overlay.open { display: flex; }
+.fb-modal { width: 100%; max-width: 480px; background: var(--dusk-deep); border: 1px solid rgba(249,248,247,0.1); border-radius: 16px; padding: 36px 32px 32px; color: var(--chalk); }
+.fb-modal h3 { font-family: var(--display); font-weight: 300; font-size: 22px; margin-bottom: 6px; }
+.fb-modal .fb-sub { font-family: var(--serif); font-style: italic; color: rgba(249,248,247,0.6); font-size: 14px; margin-bottom: 24px; }
+.fb-q { margin-bottom: 18px; }
+.fb-q-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(249,248,247,0.65); margin-bottom: 10px; }
+.fb-options { display: flex; gap: 6px; }
+.fb-option { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid rgba(249,248,247,0.12); font-size: 12px; color: var(--chalk); cursor: pointer; transition: all 0.2s var(--ease); }
+.fb-option:hover, .fb-option.active { background: rgba(252,184,121,0.08); border-color: var(--marmalade); }
+.fb-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(249,248,247,0.12); background: rgba(249,248,247,0.02); color: var(--chalk); font-family: var(--serif); font-size: 14px; outline: none; transition: border-color 0.2s var(--ease); }
+.fb-input:focus { border-color: var(--ember); }
+.fb-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+.fb-close { font-size: 11px; color: rgba(249,248,247,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
+.fb-submit { padding: 10px 18px; border-radius: 8px; background: var(--grad-h); color: var(--dusk-deep); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; }
+.fb-thanks { text-align: center; padding: 20px 0; font-family: var(--serif); font-style: italic; font-size: 18px; color: rgba(249,248,247,0.8); }
+@media (max-width: 720px) { .nav { height: 56px; } .nav-brand .word { width: 70px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="heartily-grad" x1="257.54" y1="1300.29" x2="907.66" y2="171.78" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#aa2163"/>
+      <stop offset=".52" stop-color="#fa6a74"/>
+      <stop offset="1" stop-color="#fcb879"/>
+    </linearGradient>
+    <symbol id="brand-mark" viewBox="0 0 1121.86 1461.37">
+      <path fill="url(#heartily-grad)" d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+    </symbol>
+    <symbol id="brand-wordmark" viewBox="0 0 589.92 190.3">
+      <g>
+        <path d="M97.1,32.27c1.62-.29,3.31-.44,5.05-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v97.89c-.93.35-2.18.67-3.75.96-1.57.29-3.22.44-4.96.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7v-38.15h-48.59v45.46c-.93.35-2.15.67-3.66.96-1.51.29-3.19.44-5.05.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7V33.06c.93-.23,2.18-.49,3.74-.78,1.57-.29,3.22-.44,4.96-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v37.27h48.59v-44.76c.81-.23,2.03-.49,3.66-.78Z"/>
+        <path d="M145.7,107.25c1.62,6.62,4.79,11.53,9.49,14.72,4.7,3.19,10.71,4.79,18.03,4.79,4.88,0,9.35-.75,13.41-2.26,4.06-1.51,7.32-3.14,9.75-4.88,3.25,1.86,4.88,4.47,4.88,7.84,0,1.98-.76,3.81-2.26,5.49-1.51,1.68-3.57,3.13-6.18,4.35-2.61,1.22-5.69,2.18-9.23,2.87-3.54.7-7.34,1.05-11.41,1.05-6.74,0-12.86-.93-18.38-2.79-5.52-1.86-10.25-4.64-14.2-8.36-3.95-3.71-7-8.3-9.14-13.76-2.15-5.46-3.22-11.78-3.22-18.98s1.05-13.09,3.14-18.38c2.09-5.28,4.93-9.69,8.53-13.24,3.6-3.54,7.84-6.24,12.72-8.1,4.88-1.86,10.1-2.79,15.68-2.79s10.65.9,15.24,2.7c4.59,1.8,8.53,4.3,11.84,7.49,3.31,3.2,5.86,7,7.66,11.41,1.8,4.41,2.7,9.23,2.7,14.46,0,2.9-.7,5.02-2.09,6.36-1.39,1.34-3.43,2.24-6.1,2.7l-50.86,7.31ZM167.29,68.94c-6.39,0-11.7,2.15-15.94,6.44-4.24,4.3-6.47,10.45-6.71,18.46l42.85-6.1c-.47-5.22-2.38-9.67-5.75-13.32-3.37-3.66-8.19-5.49-14.46-5.49Z"/>
+        <path d="M246.72,54.83c10.8,0,19.39,2.35,25.78,7.05,6.38,4.7,9.58,12.11,9.58,22.21v40.58c0,2.67-.61,4.73-1.83,6.19s-2.87,2.82-4.96,4.09c-3.02,1.74-6.91,3.25-11.67,4.53-4.76,1.28-10.28,1.92-16.55,1.92-11.26,0-20.06-2.21-26.39-6.62-6.33-4.41-9.49-10.91-9.49-19.51,0-7.66,2.47-13.53,7.4-17.59,4.93-4.06,12.05-6.56,21.34-7.49l24.21-2.44v-3.83c0-5.11-1.65-8.82-4.96-11.15-3.31-2.32-7.93-3.48-13.85-3.48-4.65,0-9.12.64-13.41,1.92-4.3,1.28-8.13,2.73-11.5,4.35-1.16-.93-2.15-2.06-2.96-3.4-.81-1.34-1.22-2.82-1.22-4.44,0-1.97.49-3.6,1.48-4.88.98-1.28,2.52-2.38,4.62-3.31,3.25-1.62,6.97-2.81,11.15-3.57,4.18-.75,8.59-1.13,13.24-1.13ZM247.07,127.11c4.06,0,7.6-.4,10.62-1.22,3.02-.81,5.17-1.68,6.44-2.61v-22.12l-18.98,1.92c-5.34.58-9.35,1.77-12.02,3.57-2.67,1.8-4.01,4.56-4.01,8.27s1.45,6.82,4.35,8.97c2.9,2.15,7.43,3.22,13.59,3.22Z"/>
+        <path d="M316.56,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.05.44-4.79.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-57.13c0-2.9.58-5.25,1.74-7.05,1.16-1.8,3.02-3.51,5.57-5.14,3.37-2.09,7.66-3.83,12.89-5.22,5.23-1.39,10.97-2.09,17.24-2.09,10.22,0,15.33,2.9,15.33,8.71,0,1.39-.23,2.7-.7,3.92-.47,1.22-.99,2.29-1.57,3.22-1.16-.23-2.61-.46-4.35-.7-1.74-.23-3.6-.35-5.57-.35-4.65,0-8.88.5-12.72,1.48-3.83.99-7.08,2.24-9.75,3.74v63.57Z"/>
+        <path d="M381.35,123.8c2.44,1.74,5.86,2.61,10.28,2.61,1.97,0,4.06-.29,6.27-.87,2.2-.58,4.12-1.28,5.75-2.09.81.93,1.54,1.98,2.18,3.14.64,1.16.96,2.56.96,4.18,0,3.02-1.54,5.52-4.61,7.49-3.08,1.97-7.75,2.96-14.02,2.96-8.71,0-15.65-1.95-20.81-5.83-5.17-3.89-7.75-10.31-7.75-19.25V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.43,2.35,6.44v18.81h27c.46.7.9,1.68,1.31,2.96.41,1.28.61,2.61.61,4.01,0,4.99-2.15,7.49-6.44,7.49h-22.47v41.45c0,4.18,1.22,7.14,3.66,8.88Z"/>
+        <path d="M466.7,139.83c-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.86.64,7.49,1.92,1.63,1.28,2.44,3.43,2.44,6.44v98.24c-.93.35-2.12.67-3.57.96-1.45.29-3.05.44-4.79.44Z"/>
+        <path d="M508.67,119.8c-2.9-5.69-6.44-13.76-10.63-24.21-4.18-10.45-8.25-22.3-12.19-35.53,1.05-1.28,2.44-2.35,4.18-3.22,1.74-.87,3.6-1.31,5.57-1.31,2.55,0,4.64.61,6.27,1.83,1.62,1.22,2.96,3.34,4.01,6.36,3.14,9.41,6.38,18.67,9.75,27.78,3.37,9.12,7.08,18.55,11.15,28.3h.7c1.74-3.71,3.51-8.07,5.31-13.06,1.8-4.99,3.57-10.28,5.31-15.85,1.74-5.57,3.37-11.23,4.88-16.98,1.51-5.75,2.84-11.23,4.01-16.46,1.16-.58,2.35-1.04,3.57-1.39s2.64-.52,4.27-.52c2.55,0,4.7.61,6.44,1.83,1.74,1.22,2.61,3.11,2.61,5.66,0,3.02-.78,7.64-2.35,13.85-1.57,6.21-3.63,13.06-6.18,20.55-2.56,7.49-5.46,15.07-8.71,22.73-3.25,7.66-6.51,14.46-9.75,20.38-5.81,10.22-11.06,18-15.76,23.34-4.7,5.34-9.14,8.01-13.32,8.01-3.25,0-5.84-.9-7.75-2.7-1.92-1.8-3.11-4.04-3.57-6.71,1.86-1.63,3.89-3.6,6.1-5.92,2.2-2.32,4.41-4.82,6.62-7.49,2.2-2.67,4.29-5.43,6.27-8.27,1.97-2.84,3.66-5.6,5.05-8.27-1.98-.58-3.89-1.71-5.75-3.4-1.86-1.68-3.89-4.79-6.1-9.32Z"/>
+      </g>
+      <path d="M417.23,42.46c0-3.02,1.05-5.54,3.14-7.58,2.09-2.03,4.76-3.05,8.01-3.05s5.86,1.02,7.84,3.05c1.97,2.03,2.96,4.56,2.96,7.58s-.99,5.55-2.96,7.58c-1.98,2.03-4.59,3.05-7.84,3.05s-5.92-1.01-8.01-3.05c-2.09-2.03-3.14-4.55-3.14-7.58ZM437.44,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.11.44-4.96.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-63.4c.93-.23,2.12-.52,3.57-.87,1.45-.35,3.11-.52,4.96-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.48,2.35,6.62v63.23Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <a href="heartily-home.html" class="nav-brand" aria-label="Heartily home">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="nav-pills">
+    <a class="nav-pill" href="heartily-students.html">Students</a>
+    <a class="nav-pill" href="heartily-admins.html">Schools</a>
+    <a class="nav-pill active" href="heartily-employers.html">Employers</a>
+    <a class="nav-pill" href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" data-screen-label="01 Hero">
+  <svg class="hero-mark-bg" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">For employers · Talent partnerships</div>
+    <h1 class="hero-h1">
+      <span class="l1">The candidates who <em class="accent">chose</em> your field.</span>
+      <span class="l2">Not the ones who needed a job.</span>
+    </h1>
+    <p class="hero-sub">
+      Heartily connects you with early-career candidates who have spent weeks understanding what your industry actually involves — the demands, the rewards, and the Tuesday afternoons. They arrived because they were genuinely interested. Not because your listing appeared in a search.
+    </p>
+    <div class="cta-row">
+      <a class="cta cta-primary" href="#contact">Talk to our partnerships team</a>
+      <a class="cta cta-secondary" href="#how">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" data-screen-label="02 Problem">
+  <div class="inner">
+    <div class="problem-grid">
+      <div>
+        <p class="eyebrow reveal" style="color: var(--mulberry); opacity:0.8;">The problem you've been pitched a hundred fixes for</p>
+        <h2 class="problem-h reveal">Volume isn't the problem.<br><em>Fit is.</em></h2>
+        <p class="problem-body reveal">
+          The standard early-career hiring pipeline produces volume, not quality. A job board listing generates hundreds of applications from candidates who applied to dozens of similar roles. You've seen this. You've paid for this.
+        </p>
+        <p class="problem-body reveal">
+          The root cause isn't candidate quality. It's <strong>candidate-fit information</strong>. Students applying for their first career role have almost no accurate understanding of what the work actually involves. When the reality of a Tuesday afternoon lands, many of them realize it wasn't what they wanted — and your retention number reflects it.
+        </p>
+        <p class="problem-coda reveal">
+          <em>This is not a résumé-screening problem. No amount of interview polish reveals whether a candidate would work heartily at this specific kind of work.</em>
+        </p>
+      </div>
+      <div class="problem-stats">
+        <div class="problem-stat reveal">
+          <div class="problem-stat-n">25–30%</div>
+          <div class="problem-stat-l"><strong>First-year attrition</strong> in early-career roles, across most industries.</div>
+        </div>
+        <div class="problem-stat reveal">
+          <div class="problem-stat-n">1.5–2×</div>
+          <div class="problem-stat-l"><strong>Annual salary.</strong> Cost of a single wrong hire — recruiting, onboarding, lost productivity, re-hire.</div>
+        </div>
+        <div class="problem-stat reveal">
+          <div class="problem-stat-n">~80%</div>
+          <div class="problem-stat-l">of applicants to a typical job listing <strong>have no specific interest</strong> in your field, beyond needing a role.</div>
+        </div>
+        <div class="problem-stat reveal">
+          <div class="problem-stat-n">17</div>
+          <div class="problem-stat-l">The age at which most of those candidates <strong>chose your field</strong> — based on a job title and a salary range.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="bg-dusk diff" id="how" data-screen-label="03 Differentiators">
+  <div class="inner">
+    <div class="diff-head">
+      <p class="eyebrow reveal">What makes the pipeline different</p>
+      <h2 class="diff-h reveal">Pre-qualified by <em class="grad">genuine interest</em>.<br>Not by keywords.</h2>
+    </div>
+    <div class="diff-list">
+      <div class="diff-card reveal">
+        <div class="diff-card-num">01</div>
+        <h3 class="diff-card-h">Self-selected by <em>genuine interest</em>.</h3>
+        <p class="diff-card-body">
+          Students on Heartily spend an average of <strong style="color:var(--marmalade);font-weight:400;">3.4 weeks</strong> exploring careers in your industry before ever seeing an employer listing. They return multiple times. They read honest accounts of what the work actually involves — including the hard parts. The candidates who connect with you have already been exposed to the unglamourized reality of your field and chose to keep going.
+        </p>
+        <div class="diff-card-tag">Self-selection is not replicable by any screening tool.</div>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:120ms;">
+        <div class="diff-card-num">02</div>
+        <h3 class="diff-card-h">Behaviorally <em>verified</em>, not self-reported.</h3>
+        <p class="diff-card-body">
+          Heartily's matching is built on behavioral signals — how students engage with content, what they return to, what they explore in depth — not on résumé keywords or self-reported interest. A candidate who says they're interested in healthcare is common. A candidate whose engagement data over four weeks shows <em>sustained, specific interest</em> in clinical work is different. You receive the latter.
+        </p>
+        <div class="diff-card-tag">Words can be polished. Behavior over weeks cannot.</div>
+      </div>
+      <div class="diff-card reveal" style="transition-delay:240ms;">
+        <div class="diff-card-num">03</div>
+        <h3 class="diff-card-h">Already <em>understands</em> the work.</h3>
+        <p class="diff-card-body">
+          By the time a Heartily candidate enters your pipeline, they have read an honest account of what a typical Tuesday looks like in your field. They have seen salary ranges, stress levels, autonomy scores, and career branching data. They have asked themselves: <em>would I do this heartily?</em> — and answered yes, with enough information for the answer to mean something.
+        </p>
+        <div class="diff-card-tag">The Tuesday-afternoon disappointment, eliminated upstream.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="bg-chalk roi" data-screen-label="04 ROI">
+  <div class="inner">
+    <div class="roi-head">
+      <p class="eyebrow reveal">The ROI frame</p>
+      <h2 class="roi-h reveal">The math is the <em>argument</em>.</h2>
+      <p class="roi-sub reveal">Simple, honest, not inflated. Run your own numbers and bring them back to us.</p>
+    </div>
+
+    <div class="roi-calc reveal">
+      <div class="roi-row">
+        <div class="roi-row-label">
+          <span class="meta">Starting assumption</span>
+          Early-career role · annual salary
+        </div>
+        <div class="roi-row-value">$65,000</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-row-label">
+          <span class="meta">Cost of a wrong hire</span>
+          1.5–2× annual salary (recruit + onboard + re-hire)
+        </div>
+        <div class="roi-row-value">$97K–$130K</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-row-label">
+          <span class="meta">Current state · industry average</span>
+          First-year attrition on a 10-person cohort
+        </div>
+        <div class="roi-row-value">25–30%</div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-row-label">
+          <span class="meta">With Heartily · pre-aligned candidates</span>
+          First-year attrition on the same cohort
+        </div>
+        <div class="roi-row-value"><span class="pos">10–15%</span></div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-row-label">
+          <span class="meta">Net result</span>
+          1–2 fewer wrong hires per cohort
+        </div>
+        <div class="roi-row-value">$97K–$260K saved</div>
+      </div>
+      <div class="roi-row total">
+        <div class="roi-row-label">
+          <span class="meta">Heartily partnership</span>
+          ROI-positive on a <em>single</em> retained hire.
+        </div>
+        <div class="roi-row-value">Net positive</div>
+      </div>
+    </div>
+
+    <p class="roi-foot reveal">
+      <em>The numbers above use industry-typical figures. We'd rather walk through your real attrition data than have you trust ours.</em>
+    </p>
+  </div>
+</section>
+
+<!-- EMPLOYER PLATFORM PREVIEW -->
+<section class="emp-preview bg-deep" data-screen-label="05 Platform preview">
+  <div class="inner">
+    <div class="emp-preview-head">
+      <p class="eyebrow reveal" style="color: var(--marmalade); opacity:0.9;">Inside the platform</p>
+      <h2 class="emp-preview-h reveal">A candidate profile that <em>actually says something</em>.</h2>
+    </div>
+
+    <div class="browser reveal">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">employers.heartily.work / pipeline</div>
+      </div>
+      <div class="emp-dash">
+        <div class="emp-list">
+          <div class="emp-list-head">
+            <div class="emp-list-h">Inbound · Q3</div>
+            <div class="emp-list-filter italic">28 of 312 · filtered</div>
+          </div>
+          <div class="emp-search">
+            "Sustained interest in <strong>electrical engineering</strong>, explored <strong>master electrician</strong> pathway"
+          </div>
+          <div class="emp-candidates">
+            <div class="emp-candidate active">
+              <div class="emp-avatar">MR</div>
+              <div>
+                <div class="emp-cand-name">Maya R.</div>
+                <div class="emp-cand-meta italic">12 wks · 23 careers · electrical focus</div>
+              </div>
+              <div class="emp-cand-score">
+                <div class="emp-cand-score-n">94</div>
+                <div class="emp-cand-score-l">Fit</div>
+              </div>
+            </div>
+            <div class="emp-candidate">
+              <div class="emp-avatar">JT</div>
+              <div>
+                <div class="emp-cand-name">Jordan T.</div>
+                <div class="emp-cand-meta italic">9 wks · 14 careers · trades focus</div>
+              </div>
+              <div class="emp-cand-score">
+                <div class="emp-cand-score-n">88</div>
+                <div class="emp-cand-score-l">Fit</div>
+              </div>
+            </div>
+            <div class="emp-candidate">
+              <div class="emp-avatar">AS</div>
+              <div>
+                <div class="emp-cand-name">Andre S.</div>
+                <div class="emp-cand-meta italic">15 wks · 31 careers · electrical</div>
+              </div>
+              <div class="emp-cand-score">
+                <div class="emp-cand-score-n">85</div>
+                <div class="emp-cand-score-l">Fit</div>
+              </div>
+            </div>
+            <div class="emp-candidate">
+              <div class="emp-avatar">PL</div>
+              <div>
+                <div class="emp-cand-name">Priya L.</div>
+                <div class="emp-cand-meta italic">7 wks · 11 careers · construction</div>
+              </div>
+              <div class="emp-cand-score">
+                <div class="emp-cand-score-n">81</div>
+                <div class="emp-cand-score-l">Fit</div>
+              </div>
+            </div>
+            <div class="emp-candidate">
+              <div class="emp-avatar">DK</div>
+              <div>
+                <div class="emp-cand-name">Devon K.</div>
+                <div class="emp-cand-meta italic">11 wks · 19 careers · mech/elec</div>
+              </div>
+              <div class="emp-cand-score">
+                <div class="emp-cand-score-n">79</div>
+                <div class="emp-cand-score-l">Fit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="emp-detail">
+          <div class="emp-detail-head">
+            <div>
+              <div class="emp-detail-name">Maya R.</div>
+              <div class="emp-detail-sub italic">Lincoln HS · senior · opted in to employer contact</div>
+            </div>
+            <div class="emp-detail-score">
+              <div class="emp-detail-score-n">94</div>
+              <div class="emp-detail-score-l">Fit · electrical</div>
+            </div>
+          </div>
+
+          <div class="emp-section-h">Explored, 12 weeks</div>
+          <div class="emp-explored">
+            <div class="emp-chip primary">Master Electrician · 14 sessions</div>
+            <div class="emp-chip primary">Industrial Electrician · 9</div>
+            <div class="emp-chip">Electrical Engineer · 6</div>
+            <div class="emp-chip">Solar Installer · 4</div>
+            <div class="emp-chip">HVAC Tech · 3</div>
+          </div>
+
+          <div class="emp-section-h">Behavioral signals</div>
+          <div class="emp-signals">
+            <div class="emp-signal">
+              <div class="emp-signal-l italic">Sustained interest</div>
+              <div class="emp-signal-bar"><div class="emp-signal-fill" style="--w:94%;"></div></div>
+              <div class="emp-signal-v">94</div>
+            </div>
+            <div class="emp-signal">
+              <div class="emp-signal-l italic">Depth of engagement</div>
+              <div class="emp-signal-bar"><div class="emp-signal-fill" style="--w:88%;"></div></div>
+              <div class="emp-signal-v">88</div>
+            </div>
+            <div class="emp-signal">
+              <div class="emp-signal-l italic">Hands-on preference</div>
+              <div class="emp-signal-bar"><div class="emp-signal-fill" style="--w:91%;"></div></div>
+              <div class="emp-signal-v">91</div>
+            </div>
+            <div class="emp-signal">
+              <div class="emp-signal-l italic">Long-apprenticeship OK</div>
+              <div class="emp-signal-bar"><div class="emp-signal-fill" style="--w:86%;"></div></div>
+              <div class="emp-signal-v">86</div>
+            </div>
+            <div class="emp-signal">
+              <div class="emp-signal-l italic">Solo problem-solving</div>
+              <div class="emp-signal-bar"><div class="emp-signal-fill" style="--w:79%;"></div></div>
+              <div class="emp-signal-v">79</div>
+            </div>
+          </div>
+
+          <div class="emp-quote">
+            "I read the Tuesday writeup three times — the one about the fault in panel C. That's the moment I'd want to be in. I'd do the apprenticeship for that."
+            <div class="emp-quote-attr">Reflection prompt · response · week 8</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP -->
+<section class="partnership" id="partnership" data-screen-label="06 Partnership">
+  <div class="inner">
+    <div class="partnership-head">
+      <p class="eyebrow reveal">Partnership structure</p>
+      <h2 class="partnership-h reveal">Two ways in. <em>Both honest.</em></h2>
+    </div>
+    <div class="part-grid">
+      <div class="part-card feature reveal">
+        <div class="part-card-eyebrow">Pipeline Access · Annual</div>
+        <h3 class="part-card-h">Pipeline <em>Access</em></h3>
+        <p class="part-card-body">
+          An annual partnership fee gives your talent team ongoing access to Heartily candidates in your sector. You see interested candidates <em>before</em> they apply elsewhere.
+        </p>
+        <div class="part-list">
+          <div class="part-li">Employer profile — written by our editorial team in your voice. Never advertising-coded.</div>
+          <div class="part-li">Behavioral candidate signals alongside applications</div>
+          <div class="part-li">Direct outreach capability</div>
+          <div class="part-li">Quarterly pipeline reports</div>
+          <div class="part-li">Account management — single point of contact</div>
+        </div>
+      </div>
+      <div class="part-card reveal" style="transition-delay:120ms;">
+        <div class="part-card-eyebrow">Placement Partnership · Per hire</div>
+        <h3 class="part-card-h">Placement <em>Partnership</em></h3>
+        <p class="part-card-body">
+          Pay per confirmed placement. No upfront commitment. For organizations that want to test pipeline quality before committing to an ongoing relationship.
+        </p>
+        <div class="part-list">
+          <div class="part-li">Same candidate engagement data and signals</div>
+          <div class="part-li">Same direct outreach + reporting</div>
+          <div class="part-li">Pay only on confirmed, retained placement</div>
+          <div class="part-li">Convert to Pipeline Access at any time</div>
+          <div class="part-li">No content quota, no minimum spend</div>
+        </div>
+      </div>
+    </div>
+    <p class="part-note reveal">
+      <strong>Heartily does not sell candidate data.</strong> Students control their information and must <em>opt in</em> to employer contact. That's a structural commitment, not a setting.
+    </p>
+  </div>
+</section>
+
+<!-- MISSION AS FEATURE -->
+<section class="bg-dusk mission" data-screen-label="07 Mission as feature">
+  <div class="mission-inner">
+    <svg class="mission-mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <div>
+      <div class="mission-eyebrow">The mission, as a feature</div>
+      <h2 class="mission-h reveal">Being a Heartily partner is <em>visible</em> to candidates.</h2>
+      <p class="mission-body reveal">
+        Your employer profile sits inside a platform that exists to help young people make good career decisions. That signal — that you wanted people who chose your field with real understanding, not people who needed a job — is read clearly by the candidates you most want.
+      </p>
+      <p class="mission-body reveal" style="margin-top:18px;">
+        In an era when early-career candidates research employer values before applying, this has recruiting value <strong>beyond any individual hire</strong>. We say it plainly because it's plainly true — not as the reason to partner, but as one of the reasons it works.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" data-screen-label="08 Voices">
+  <div class="inner">
+    <div class="voices-head">
+      <p class="eyebrow reveal">Voices</p>
+      <h2 class="voices-h reveal"><em class="italic">Representative perspectives</em> from the talent leaders we work with.</h2>
+    </div>
+    <div class="voices-list">
+      <div class="voice reveal">
+        <p class="voice-quote">"The standard question we ask in every interview is 'what do you think this job actually involves day to day?' Most candidates give us the brochure version. What I want is someone who's already wrestled with the honest answer."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>Talent acquisition · Healthcare system</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:120ms;">
+        <p class="voice-quote">"First-year attrition is the number I care about most. Everything else is a hiring process question. This is a fit question."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>HR director · Skilled trades partnership</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:240ms;">
+        <p class="voice-quote">"We've paid for résumé volume for a decade. What we actually need is the candidate who read the unglamourized writeup and stayed."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>CHRO · Mid-market manufacturing</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:360ms;">
+        <p class="voice-quote">"We test the pipeline on a single cohort. If retention moves, we expand. If it doesn't, we walk. Heartily is the first partner who didn't blink at that framing."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>Director of early-career programs · Financial services</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact" data-screen-label="09 CTA">
+  <svg class="final-cta-mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true">
+    <path d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+  </svg>
+  <div class="final-cta-inner inner">
+    <h2 class="final-cta-h reveal">Build a pipeline<br>that <em>actually fits</em>.</h2>
+    <p class="final-cta-sub reveal"><em>Tell us about your sector. We'll come back with what this looks like for you.</em></p>
+    <div class="cta-row reveal" style="justify-content:center;">
+      <a class="cta cta-primary" href="#">Start a conversation</a>
+      <a class="cta cta-secondary" href="#">Download the employer brief</a>
+    </div>
+    <div class="final-cta-contact reveal">partnerships@heartily.work · <a href="#">heartily.work</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="heartily-home.html" class="footer-lockup">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="footer-addr">HEARTILY.WORK</div>
+  <p class="footer-tag"><em>Find the work you'd do with your whole heart.</em></p>
+  <div class="footer-rule"></div>
+  <div class="footer-links">
+    <a href="heartily-students.html">Students &amp; Families</a>
+    <a href="heartily-admins.html">School Administrators</a>
+    <a href="heartily-employers.html">Employers</a>
+    <a href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</footer>
+
+<!-- FEEDBACK -->
+<button class="fb-btn" id="fbBtn">Share feedback</button>
+<div class="fb-overlay" id="fbOverlay" role="dialog" aria-modal="true">
+  <div class="fb-modal">
+    <div id="fbForm">
+      <h3>A few quick questions.</h3>
+      <p class="fb-sub italic">Help us make this clearer for the next employer who lands here.</p>
+      <div class="fb-q">
+        <div class="fb-q-label">Does this feel relevant to you?</div>
+        <div class="fb-options"><button class="fb-option" data-v="Yes">Yes</button><button class="fb-option" data-v="Somewhat">Somewhat</button><button class="fb-option" data-v="No">No</button></div>
+      </div>
+      <div class="fb-q"><div class="fb-q-label">Most interesting thing on this page?</div><input class="fb-input" id="fbInteresting" type="text" placeholder="In a few words…"></div>
+      <div class="fb-q"><div class="fb-q-label">What's missing?</div><input class="fb-input" id="fbMissing" type="text" placeholder="In a few words…"></div>
+      <div class="fb-actions"><button class="fb-close" id="fbCancel">Close</button><button class="fb-submit" id="fbSubmit">Send</button></div>
+    </div>
+    <div id="fbThanks" style="display:none;">
+      <p class="fb-thanks"><em>Thank you. This goes straight to the team.</em></p>
+      <div class="fb-actions" style="justify-content:center;"><button class="fb-close" id="fbDone">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+function updateNavBg() {
+  const y = window.scrollY + 32;
+  const sections = document.querySelectorAll('section, footer');
+  let active = null;
+  sections.forEach(s => {
+    const r = s.getBoundingClientRect();
+    const top = r.top + window.scrollY;
+    if (y >= top && y < top + r.height) active = s;
+  });
+  const isLight = active && (active.classList.contains('problem') || active.classList.contains('roi') || active.classList.contains('partnership') || active.classList.contains('voices') || active.classList.contains('bg-chalk'));
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+  nav.classList.toggle('scrolled-light', !!isLight);
+}
+window.addEventListener('scroll', updateNavBg, { passive: true });
+updateNavBg();
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+const browserIO = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); browserIO.unobserve(e.target); } });
+}, { threshold: 0.25 });
+document.querySelectorAll('.browser').forEach((b) => browserIO.observe(b));
+
+const fbBtn = document.getElementById('fbBtn');
+const fbOverlay = document.getElementById('fbOverlay');
+const fbForm = document.getElementById('fbForm');
+const fbThanks = document.getElementById('fbThanks');
+fbBtn.addEventListener('click', () => fbOverlay.classList.add('open'));
+document.getElementById('fbCancel').addEventListener('click', () => fbOverlay.classList.remove('open'));
+document.getElementById('fbDone').addEventListener('click', () => { fbOverlay.classList.remove('open'); fbForm.style.display='block'; fbThanks.style.display='none'; });
+fbOverlay.addEventListener('click', (e) => { if (e.target === fbOverlay) fbOverlay.classList.remove('open'); });
+let fbRelevance = null;
+document.querySelectorAll('.fb-options .fb-option').forEach((b) => {
+  b.addEventListener('click', () => {
+    b.parentElement.querySelectorAll('.fb-option').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    fbRelevance = b.dataset.v;
+  });
+});
+document.getElementById('fbSubmit').addEventListener('click', () => {
+  console.log('[Heartily feedback]', {
+    page: 'heartily-employers', relevance: fbRelevance,
+    interesting: document.getElementById('fbInteresting').value,
+    missing: document.getElementById('fbMissing').value,
+    ts: new Date().toISOString(),
+  });
+  fbForm.style.display='none'; fbThanks.style.display='block';
+});
+</script>
+
+</body>
+</html>

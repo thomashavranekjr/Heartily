@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartily for Schools — The career guidance tool your students will actually use</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --chalk:     #F9F8F7;
+  --chalk-2:   #EFEDE9;
+  --dusk:      #362B47;
+  --dusk-deep: #221B30;
+  --dusk-ink:  #14101D;
+  --marmalade: #FCB879;
+  --ember:     #FA6A74;
+  --mulberry:  #AA2163;
+  --grad:   linear-gradient(135deg, #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --grad-h: linear-gradient(90deg,  #AA2163 0%, #FA6A74 52%, #FCB879 100%);
+  --display: 'Lexend Giga', system-ui, sans-serif;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--display); color: var(--dusk); background: var(--chalk); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+button, a { font: inherit; color: inherit; cursor: pointer; }
+button { background: none; border: 0; }
+a { text-decoration: none; }
+em { font-style: italic; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 200; letter-spacing: -0.02em; line-height: 1.05; }
+.serif  { font-family: var(--serif); font-style: normal; }
+.italic { font-family: var(--serif); font-style: italic; }
+.grad-text {
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.eyebrow {
+  font-family: var(--display); font-size: 10px; font-weight: 300;
+  letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.55;
+}
+
+.nav {
+  position: fixed; inset: 0 0 auto 0; height: 64px;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+  transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: rgba(249,248,247,0.85); backdrop-filter: blur(18px); border-bottom-color: rgba(54,43,71,0.08); }
+.nav.scrolled-dark { background: rgba(20,16,29,0.78); backdrop-filter: blur(18px); border-bottom-color: rgba(249,248,247,0.06); }
+.nav-brand { display: flex; align-items: center; gap: 10px; color: var(--dusk); transition: color 0.4s var(--ease); }
+.nav.scrolled-dark .nav-brand { color: var(--chalk); }
+.nav-brand .mark { width: 22px; height: 28px; }
+.nav-brand .word { width: 92px; }
+.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-pills {
+  display: flex; align-items: center; gap: 4px; padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(54,43,71,0.12);
+  background: rgba(54,43,71,0.02);
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+.nav.scrolled-dark .nav-pills { border-color: rgba(249,248,247,0.12); background: rgba(249,248,247,0.02); }
+.nav-pill {
+  padding: 8px 14px; border-radius: 999px;
+  font-size: 11px; font-weight: 300; letter-spacing: 0.08em;
+  color: rgba(54,43,71,0.58);
+  transition: all 0.25s var(--ease); white-space: nowrap;
+}
+.nav.scrolled-dark .nav-pill { color: rgba(249,248,247,0.62); }
+.nav-pill:hover { color: var(--dusk); background: rgba(54,43,71,0.05); }
+.nav.scrolled-dark .nav-pill:hover { color: var(--chalk); background: rgba(249,248,247,0.06); }
+.nav-pill.active { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
+.nav-pill.active:hover { color: var(--dusk-deep); }
+@media (max-width: 720px) { .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; } }
+@media (max-width: 480px) {
+  .nav { padding: 0 14px; }
+  .nav-brand .word { display: none; }
+  .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
+  .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
+}
+
+section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw, 80px); overflow: hidden; }
+.bg-deep { background: var(--dusk-deep); color: var(--chalk); }
+.bg-dusk { background: var(--dusk); color: var(--chalk); }
+.bg-ink { background: var(--dusk-ink); color: var(--chalk); }
+.bg-chalk { background: var(--chalk); color: var(--dusk); }
+.bg-chalk-2 { background: var(--chalk-2); color: var(--dusk); }
+.inner { max-width: 1240px; margin: 0 auto; position: relative; }
+.inner-narrow { max-width: 820px; margin: 0 auto; position: relative; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* CTAs */
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: 8px;
+  font-family: var(--display); font-size: 13px; font-weight: 300; letter-spacing: 0.04em;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.cta-primary { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(170,33,99,0.4); }
+.cta-secondary {
+  border: 1.5px solid rgba(54,43,71,0.2);
+  color: var(--dusk);
+}
+.cta-secondary:hover { transform: translateY(-2px); border-color: var(--mulberry); }
+.cta-secondary.on-dark {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad-h);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: var(--chalk);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — CHALK
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 92vh;
+  display: flex; align-items: center;
+  padding-top: 140px; padding-bottom: 100px;
+  background: var(--chalk);
+  position: relative;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 45% 60% at 90% 20%, rgba(252,184,121,0.18), transparent 65%),
+    radial-gradient(ellipse 40% 50% at 0% 90%, rgba(170,33,99,0.08), transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+@media (max-width: 980px) { .hero-inner { grid-template-columns: 1fr; } }
+.hero-h1 {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(40px, 5.6vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--dusk);
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+.hero-h1 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.hero-h1 .l2 { display: block; }
+.hero-h1 .l2 em {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.55;
+  color: rgba(54, 43, 71, 0.75);
+  max-width: 540px;
+  margin-bottom: 40px;
+}
+.hero-trust {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(54,43,71,0.12);
+  font-family: var(--display);
+  font-size: 11px; font-weight: 300; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(54, 43, 71, 0.6);
+}
+.hero-trust .dot {
+  display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--grad-h);
+  margin-right: 10px; vertical-align: middle;
+}
+
+/* Stat card next to hero */
+.hero-stats {
+  border: 1px solid rgba(54, 43, 71, 0.12);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.hero-stat { }
+.hero-stat-n {
+  font-family: var(--display);
+  font-weight: 100;
+  font-size: clamp(40px, 4.5vw, 64px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 6px;
+  color: var(--mulberry);
+}
+.hero-stat-l {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(54,43,71,0.7);
+}
+.hero-stat-l em { font-style: italic; }
+.hero-stat + .hero-stat { padding-top: 24px; border-top: 1px solid rgba(54,43,71,0.08); }
+
+/* ═══════════════════════════════════════════════════════════
+   PROBLEM YOU ALREADY KNOW
+   ═══════════════════════════════════════════════════════════ */
+.already-know { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); background: var(--chalk-2); }
+.ak-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(48px, 7vw, 100px);
+  align-items: start;
+}
+@media (max-width: 900px) { .ak-grid { grid-template-columns: 1fr; } }
+.ak-h {
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  color: var(--dusk);
+  margin: 22px 0 28px;
+  text-wrap: balance;
+}
+.ak-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.ak-body {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: rgba(54, 43, 71, 0.78);
+}
+.ak-body + .ak-body { margin-top: 18px; }
+
+.ak-list { display: flex; flex-direction: column; gap: 0; }
+.ak-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(54, 43, 71, 0.1);
+  align-items: baseline;
+}
+.ak-row:last-child { border-bottom: 0; }
+.ak-row-num {
+  font-family: var(--display); font-size: 11px; font-weight: 300;
+  letter-spacing: 0.16em; color: var(--mulberry);
+}
+.ak-row-text {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: rgba(54, 43, 71, 0.85);
+}
+.ak-row-text strong { font-weight: 400; color: var(--dusk); }
+
+.ak-pivot {
+  margin-top: 60px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(54,43,71,0.15);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4;
+  color: var(--dusk);
+  max-width: 720px;
+  text-wrap: balance;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WHAT IT GIVES (dusk)
+   ═══════════════════════════════════════════════════════════ */
+.gives { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.gives-head { text-align: center; max-width: 820px; margin: 0 auto 84px; }
+.gives-h {
+  font-size: clamp(34px, 4.4vw, 60px); font-weight: 200; letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 22px auto 0;
+  text-wrap: balance;
+}
+.gives-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.gives-list { display: flex; flex-direction: column; gap: 32px; }
+.gives-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  padding: 48px;
+  border: 1px solid rgba(249,248,247,0.08);
+  border-radius: 16px;
+  background: rgba(249,248,247,0.02);
+}
+@media (max-width: 900px) { .gives-block { grid-template-columns: 1fr; padding: 32px; } }
+.gives-block:nth-child(even) .gives-block-text { order: 2; }
+@media (max-width: 900px) { .gives-block:nth-child(even) .gives-block-text { order: 0; } }
+.gives-block-eyebrow {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+  margin-bottom: 18px;
+}
+.gives-block-h {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.1; letter-spacing: -0.015em;
+  margin-bottom: 18px;
+  color: var(--chalk);
+}
+.gives-block-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.gives-block-body {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.55;
+  color: rgba(249, 248, 247, 0.7);
+}
+.gives-block-body + .gives-block-body { margin-top: 14px; }
+
+/* Mini dashboard previews */
+.mini-dash {
+  border-radius: 12px;
+  background: rgba(20,16,29,0.6);
+  border: 1px solid rgba(249,248,247,0.08);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.mini-dash-chrome {
+  display: flex; gap: 6px; margin-bottom: 18px;
+}
+.mini-dash-chrome span { width: 8px; height: 8px; border-radius: 50%; background: rgba(249,248,247,0.14); }
+.mini-dash-eyebrow {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(249,248,247,0.5);
+  margin-bottom: 14px;
+}
+.dash-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.dash-stat {
+  border: 1px solid rgba(249,248,247,0.08);
+  border-radius: 10px;
+  padding: 14px;
+  background: rgba(249,248,247,0.02);
+}
+.dash-stat-n {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(28px,3vw,40px);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  background: var(--grad-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+.dash-stat-l {
+  font-family: var(--serif);
+  font-size: 12px;
+  color: rgba(249,248,247,0.65);
+  line-height: 1.35;
+}
+.dash-foot {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(249,248,247,0.45);
+  padding-top: 10px;
+  border-top: 1px solid rgba(249,248,247,0.06);
+}
+
+/* Bar chart for interest distribution */
+.interest-chart {
+  display: flex; align-items: flex-end; gap: 8px;
+  height: 100px;
+  padding-top: 16px;
+}
+.interest-bar {
+  flex: 1;
+  background: var(--grad-v);
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  opacity: 0.7;
+  transition: opacity 0.3s var(--ease);
+}
+.interest-bar:hover { opacity: 1; }
+.interest-label-row {
+  display: flex; gap: 8px;
+  margin-top: 8px;
+  font-size: 8px; letter-spacing: 0.06em;
+  color: rgba(249,248,247,0.45);
+}
+.interest-label-row span { flex: 1; text-align: center; text-transform: uppercase; }
+
+/* Counselor list view */
+.counselor-list { display: flex; flex-direction: column; gap: 10px; }
+.counselor-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(249,248,247,0.06);
+  font-family: var(--serif);
+  font-size: 13px;
+  align-items: center;
+}
+.counselor-row.flagged {
+  border-color: rgba(252,184,121,0.35);
+  background: rgba(252,184,121,0.04);
+}
+.counselor-row-name { color: rgba(249,248,247,0.85); }
+.counselor-row-meta {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(249,248,247,0.5); margin-top: 3px;
+}
+.counselor-row-status {
+  font-family: var(--display); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════════════════════════ */
+.how { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.how-head { text-align: center; max-width: 720px; margin: 0 auto 72px; }
+.how-h {
+  font-size: clamp(34px, 4.2vw, 56px); font-weight: 200; letter-spacing: -0.02em;
+  margin: 22px auto 0;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.how-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 980px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  padding: 32px 28px 36px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(54,43,71,0.1);
+  position: relative;
+}
+.step-num {
+  font-family: var(--display); font-weight: 100;
+  font-size: 48px;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  background: var(--grad-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+.step-h {
+  font-family: var(--display); font-weight: 300;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  color: var(--dusk);
+  line-height: 1.2;
+}
+.step-body {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(54,43,71,0.7);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WHAT IT DOESN'T DO
+   ═══════════════════════════════════════════════════════════ */
+.doesnt { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); background: var(--chalk); }
+.doesnt-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(40px, 6vw, 100px); align-items: start; max-width: 1240px; margin: 0 auto; }
+@media (max-width: 900px) { .doesnt-inner { grid-template-columns: 1fr; } }
+.doesnt-h {
+  font-size: clamp(34px, 4.2vw, 56px);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 22px 0 22px;
+}
+.doesnt-h em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--mulberry); }
+.doesnt-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: rgba(54,43,71,0.7);
+  max-width: 380px;
+}
+.doesnt-list { display: flex; flex-direction: column; gap: 0; }
+.doesnt-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(54,43,71,0.08);
+  align-items: baseline;
+}
+.doesnt-item:first-child { padding-top: 0; }
+.doesnt-item:last-child { border-bottom: 0; }
+.doesnt-x {
+  width: 22px; height: 22px;
+  border: 1px solid rgba(54,43,71,0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(54,43,71,0.5);
+  font-size: 11px;
+}
+.doesnt-text {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: rgba(54,43,71,0.85);
+}
+.doesnt-text strong { font-weight: 400; color: var(--dusk); }
+
+/* ═══════════════════════════════════════════════════════════
+   PRICING
+   ═══════════════════════════════════════════════════════════ */
+.pricing { padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.pricing-head { text-align: center; margin-bottom: 64px; }
+.pricing-h {
+  font-size: clamp(32px, 4vw, 52px); font-weight: 200; letter-spacing: -0.02em;
+  margin: 22px auto 0;
+  line-height: 1.04;
+}
+.pricing-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 880px) { .pricing-grid { grid-template-columns: 1fr; } }
+.pricing-card {
+  padding: 40px 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(249,248,247,0.1);
+  background: rgba(249,248,247,0.02);
+}
+.pricing-card.feature {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  position: relative;
+}
+.pricing-card-eyebrow {
+  font-size: 10px; font-weight: 300; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--marmalade);
+  margin-bottom: 16px;
+}
+.pricing-amount {
+  font-family: var(--display); font-weight: 100;
+  font-size: clamp(40px, 4.6vw, 64px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 12px;
+  background: var(--grad-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pricing-amount-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(249,248,247,0.55);
+  margin-bottom: 30px;
+}
+.pricing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.pricing-li {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(249,248,247,0.8);
+  padding-left: 22px;
+  position: relative;
+}
+.pricing-li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 12px; height: 1px; background: var(--grad-h);
+}
+.pricing-li.muted { color: rgba(249,248,247,0.45); }
+.pricing-li.muted::before { background: rgba(249,248,247,0.2); }
+.pricing-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(249,248,247,0.5);
+  line-height: 1.5;
+  padding-top: 20px;
+  border-top: 1px solid rgba(249,248,247,0.08);
+}
+.pricing-card.alt { background: transparent; }
+.pricing-card.alt .pricing-amount {
+  background: none; -webkit-text-fill-color: var(--chalk); color: var(--chalk);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ADMIN DASHBOARD PREVIEW
+   ═══════════════════════════════════════════════════════════ */
+.admin-preview { background: var(--dusk-deep); padding-top: clamp(110px, 14vh, 160px); padding-bottom: clamp(110px, 14vh, 160px); }
+.admin-preview-head { text-align: center; max-width: 780px; margin: 0 auto 72px; }
+.admin-preview-h {
+  font-size: clamp(32px, 4vw, 52px); font-weight: 200; letter-spacing: -0.02em;
+  margin: 22px auto 0; line-height: 1.04;
+}
+.admin-preview-h em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.browser {
+  max-width: 1080px;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid rgba(249,248,247,0.1);
+  background: #0d0918;
+  overflow: hidden;
+  box-shadow: 0 60px 100px -40px rgba(0,0,0,0.7), 0 0 0 1px rgba(250,106,116,0.05) inset;
+}
+.browser-chrome {
+  height: 36px; padding: 0 14px;
+  border-bottom: 1px solid rgba(249,248,247,0.08);
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(0,0,0,0.2);
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dots span { width: 9px; height: 9px; border-radius: 50%; background: rgba(249,248,247,0.16); }
+.browser-url {
+  font-family: var(--display); font-size: 10px; font-weight: 300;
+  color: rgba(249,248,247,0.45);
+  letter-spacing: 0.04em;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(249,248,247,0.04);
+  min-width: 280px;
+  text-align: center;
+}
+.dash-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  min-height: 540px;
+}
+@media (max-width: 760px) { .dash-body { grid-template-columns: 1fr; } }
+.dash-side {
+  background: rgba(20,16,29,0.6);
+  border-right: 1px solid rgba(249,248,247,0.06);
+  padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+@media (max-width: 760px) { .dash-side { border-right: 0; border-bottom: 1px solid rgba(249,248,247,0.06); flex-direction: row; flex-wrap: wrap; padding: 14px; } }
+.dash-side-h {
+  font-size: 9px; font-weight: 300; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(249,248,247,0.4);
+  margin: 14px 0 8px;
+}
+.dash-side-h:first-child { margin-top: 0; }
+.dash-side-item {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: rgba(249,248,247,0.6);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.dash-side-item:hover { background: rgba(249,248,247,0.04); color: var(--chalk); }
+.dash-side-item.active {
+  background: rgba(252,184,121,0.08);
+  color: var(--marmalade);
+  border-left: 2px solid var(--marmalade);
+}
+.dash-main { padding: 32px; min-width: 0; }
+.dash-main-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(249,248,247,0.45); margin-bottom: 8px;
+}
+.dash-main-h {
+  font-family: var(--display); font-weight: 200;
+  font-size: 24px; letter-spacing: -0.015em;
+  color: var(--chalk); margin-bottom: 24px;
+}
+.dash-kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin-bottom: 28px;
+}
+@media (max-width: 720px) { .dash-kpis { grid-template-columns: 1fr 1fr; } }
+.dash-kpi {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(249,248,247,0.06);
+  background: rgba(249,248,247,0.02);
+}
+.dash-kpi-n {
+  font-family: var(--display); font-weight: 200;
+  font-size: 22px; letter-spacing: -0.02em;
+  color: var(--chalk);
+  margin-bottom: 4px;
+}
+.dash-kpi-l {
+  font-family: var(--serif);
+  font-size: 11px;
+  color: rgba(249,248,247,0.55);
+  line-height: 1.35;
+}
+.dash-kpi-trend {
+  font-size: 9px; letter-spacing: 0.1em;
+  color: var(--marmalade);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.dash-chart-h {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: rgba(249,248,247,0.8);
+  margin: 4px 0 16px;
+}
+.dash-chart {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  margin-bottom: 18px;
+  align-items: center;
+}
+.dash-chart-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+}
+.dash-chart-cat {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: rgba(249,248,247,0.72);
+}
+.dash-chart-track {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(249,248,247,0.06);
+  overflow: hidden;
+}
+.dash-chart-fill {
+  height: 100%;
+  background: var(--grad-h);
+  border-radius: 3px;
+  width: 0;
+  transition: width 1.4s var(--ease);
+}
+.browser.in .dash-chart-fill { width: var(--w, 50%); }
+.dash-chart-pct {
+  font-family: var(--display); font-size: 11px; font-weight: 300;
+  color: rgba(249,248,247,0.6);
+  text-align: right;
+}
+
+.dash-insight {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  border-left: 2px solid var(--marmalade);
+  background: rgba(252,184,121,0.05);
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(249,248,247,0.85);
+}
+.dash-insight-tag {
+  font-family: var(--display); font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--marmalade);
+  margin-bottom: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VOICES
+   ═══════════════════════════════════════════════════════════ */
+.voices { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); background: var(--chalk); }
+.voices-head { text-align: center; margin-bottom: 64px; }
+.voices-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1100px; margin: 0 auto;
+}
+@media (max-width: 800px) { .voices-list { grid-template-columns: 1fr; } }
+.voice {
+  position: relative;
+  padding: 32px 32px 28px 36px;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(54,43,71,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.voice::before {
+  content: ""; position: absolute; left: 0; top: 28px; bottom: 28px;
+  width: 3px; background: var(--grad-v);
+  border-radius: 0 2px 2px 0;
+}
+.voice-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.5;
+  color: var(--dusk);
+  margin-bottom: 18px;
+}
+.voice-attr {
+  font-family: var(--display);
+  font-size: 10px; font-weight: 300; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(54,43,71,0.6);
+}
+.voice-attr .label {
+  display: block;
+  font-size: 9px; letter-spacing: 0.22em;
+  color: rgba(170,33,99,0.7);
+  margin-bottom: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FINAL CTA
+   ═══════════════════════════════════════════════════════════ */
+.final-cta { padding-top: clamp(120px, 18vh, 200px); padding-bottom: clamp(120px, 18vh, 200px); background: var(--dusk-deep); color: var(--chalk); text-align: center; position: relative; overflow: hidden; }
+.final-cta::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 80% 80%, rgba(170,33,99,0.22), transparent 65%),
+    radial-gradient(ellipse 50% 45% at 20% 20%, rgba(252,184,121,0.12), transparent 65%);
+  pointer-events: none;
+}
+.final-cta-mark { position: absolute; right: -14vw; bottom: -14vw; width: 50vw; max-width: 700px; opacity: 0.06; pointer-events: none; }
+.final-cta-mark path { fill: var(--chalk) !important; }
+.final-cta-inner { position: relative; z-index: 1; }
+.final-cta-h {
+  font-family: var(--display); font-weight: 100;
+  font-size: clamp(44px, 7vw, 110px);
+  line-height: 0.95; letter-spacing: -0.035em;
+  margin-bottom: 24px;
+}
+.final-cta-h em {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.final-cta-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px, 1.5vw, 22px);
+  color: rgba(249,248,247,0.7);
+  margin-bottom: 48px;
+}
+.final-cta-contact {
+  margin-top: 36px;
+  font-family: var(--display);
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.16em;
+  color: rgba(249,248,247,0.55);
+}
+.final-cta-contact a {
+  color: var(--marmalade);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s var(--ease);
+}
+.final-cta-contact a:hover { border-color: var(--marmalade); }
+
+/* Footer */
+.footer { background: var(--dusk-ink); color: var(--chalk); padding: 80px 24px 60px; text-align: center; }
+.footer-lockup { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.footer-lockup .mark { width: 26px; height: 34px; }
+.footer-lockup .word { width: 112px; }
+.footer-lockup .word, .footer-lockup .word path { fill: var(--chalk); }
+.footer-addr { font-family: var(--display); font-weight: 300; font-size: 10px; letter-spacing: 0.32em; color: rgba(249,248,247,0.4); margin-bottom: 38px; }
+.footer-tag { font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.6vw,22px); color: rgba(249,248,247,0.75); max-width: 520px; margin: 0 auto 38px; line-height: 1.4; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: 12px; font-weight: 300; letter-spacing: 0.05em; color: rgba(249,248,247,0.55); }
+.footer-links a { transition: color 0.25s var(--ease); }
+.footer-links a:hover { color: var(--chalk); }
+.footer-rule { width: 64px; height: 1px; background: var(--grad-h); margin: 0 auto 38px; }
+
+/* Feedback */
+.fb-btn { position: fixed; bottom: 24px; right: 24px; z-index: 90; padding: 10px 16px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; color: var(--chalk); border-radius: 999px; border: 1.5px solid transparent; background-image: linear-gradient(rgba(34,27,48,0.92), rgba(34,27,48,0.92)), var(--grad-h); background-origin: border-box; background-clip: padding-box, border-box; backdrop-filter: blur(10px); transition: transform 0.25s var(--ease); }
+.fb-btn:hover { transform: translateY(-2px); }
+.fb-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(20,16,29,0.7); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.fb-overlay.open { display: flex; }
+.fb-modal { width: 100%; max-width: 480px; background: var(--dusk-deep); border: 1px solid rgba(249,248,247,0.1); border-radius: 16px; padding: 36px 32px 32px; color: var(--chalk); }
+.fb-modal h3 { font-family: var(--display); font-weight: 300; font-size: 22px; margin-bottom: 6px; }
+.fb-modal .fb-sub { font-family: var(--serif); font-style: italic; color: rgba(249,248,247,0.6); font-size: 14px; margin-bottom: 24px; }
+.fb-q { margin-bottom: 18px; }
+.fb-q-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(249,248,247,0.65); margin-bottom: 10px; }
+.fb-options { display: flex; gap: 6px; }
+.fb-option { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid rgba(249,248,247,0.12); font-size: 12px; color: var(--chalk); cursor: pointer; transition: all 0.2s var(--ease); }
+.fb-option:hover, .fb-option.active { background: rgba(252,184,121,0.08); border-color: var(--marmalade); }
+.fb-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(249,248,247,0.12); background: rgba(249,248,247,0.02); color: var(--chalk); font-family: var(--serif); font-size: 14px; outline: none; transition: border-color 0.2s var(--ease); }
+.fb-input:focus { border-color: var(--ember); }
+.fb-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+.fb-close { font-size: 11px; color: rgba(249,248,247,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
+.fb-submit { padding: 10px 18px; border-radius: 8px; background: var(--grad-h); color: var(--dusk-deep); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; }
+.fb-thanks { text-align: center; padding: 20px 0; font-family: var(--serif); font-style: italic; font-size: 18px; color: rgba(249,248,247,0.8); }
+@media (max-width: 720px) { .nav { height: 56px; } .nav-brand .word { width: 70px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="heartily-grad" x1="257.54" y1="1300.29" x2="907.66" y2="171.78" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#aa2163"/>
+      <stop offset=".52" stop-color="#fa6a74"/>
+      <stop offset="1" stop-color="#fcb879"/>
+    </linearGradient>
+    <symbol id="brand-mark" viewBox="0 0 1121.86 1461.37">
+      <path fill="url(#heartily-grad)" d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+    </symbol>
+    <symbol id="brand-wordmark" viewBox="0 0 589.92 190.3">
+      <g>
+        <path d="M97.1,32.27c1.62-.29,3.31-.44,5.05-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v97.89c-.93.35-2.18.67-3.75.96-1.57.29-3.22.44-4.96.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7v-38.15h-48.59v45.46c-.93.35-2.15.67-3.66.96-1.51.29-3.19.44-5.05.44-3.6,0-6.18-.67-7.75-2-1.57-1.33-2.35-3.57-2.35-6.7V33.06c.93-.23,2.18-.49,3.74-.78,1.57-.29,3.22-.44,4.96-.44,3.37,0,5.89.64,7.58,1.92,1.68,1.28,2.53,3.54,2.53,6.79v37.27h48.59v-44.76c.81-.23,2.03-.49,3.66-.78Z"/>
+        <path d="M145.7,107.25c1.62,6.62,4.79,11.53,9.49,14.72,4.7,3.19,10.71,4.79,18.03,4.79,4.88,0,9.35-.75,13.41-2.26,4.06-1.51,7.32-3.14,9.75-4.88,3.25,1.86,4.88,4.47,4.88,7.84,0,1.98-.76,3.81-2.26,5.49-1.51,1.68-3.57,3.13-6.18,4.35-2.61,1.22-5.69,2.18-9.23,2.87-3.54.7-7.34,1.05-11.41,1.05-6.74,0-12.86-.93-18.38-2.79-5.52-1.86-10.25-4.64-14.2-8.36-3.95-3.71-7-8.3-9.14-13.76-2.15-5.46-3.22-11.78-3.22-18.98s1.05-13.09,3.14-18.38c2.09-5.28,4.93-9.69,8.53-13.24,3.6-3.54,7.84-6.24,12.72-8.1,4.88-1.86,10.1-2.79,15.68-2.79s10.65.9,15.24,2.7c4.59,1.8,8.53,4.3,11.84,7.49,3.31,3.2,5.86,7,7.66,11.41,1.8,4.41,2.7,9.23,2.7,14.46,0,2.9-.7,5.02-2.09,6.36-1.39,1.34-3.43,2.24-6.1,2.7l-50.86,7.31ZM167.29,68.94c-6.39,0-11.7,2.15-15.94,6.44-4.24,4.3-6.47,10.45-6.71,18.46l42.85-6.1c-.47-5.22-2.38-9.67-5.75-13.32-3.37-3.66-8.19-5.49-14.46-5.49Z"/>
+        <path d="M246.72,54.83c10.8,0,19.39,2.35,25.78,7.05,6.38,4.7,9.58,12.11,9.58,22.21v40.58c0,2.67-.61,4.73-1.83,6.19s-2.87,2.82-4.96,4.09c-3.02,1.74-6.91,3.25-11.67,4.53-4.76,1.28-10.28,1.92-16.55,1.92-11.26,0-20.06-2.21-26.39-6.62-6.33-4.41-9.49-10.91-9.49-19.51,0-7.66,2.47-13.53,7.4-17.59,4.93-4.06,12.05-6.56,21.34-7.49l24.21-2.44v-3.83c0-5.11-1.65-8.82-4.96-11.15-3.31-2.32-7.93-3.48-13.85-3.48-4.65,0-9.12.64-13.41,1.92-4.3,1.28-8.13,2.73-11.5,4.35-1.16-.93-2.15-2.06-2.96-3.4-.81-1.34-1.22-2.82-1.22-4.44,0-1.97.49-3.6,1.48-4.88.98-1.28,2.52-2.38,4.62-3.31,3.25-1.62,6.97-2.81,11.15-3.57,4.18-.75,8.59-1.13,13.24-1.13ZM247.07,127.11c4.06,0,7.6-.4,10.62-1.22,3.02-.81,5.17-1.68,6.44-2.61v-22.12l-18.98,1.92c-5.34.58-9.35,1.77-12.02,3.57-2.67,1.8-4.01,4.56-4.01,8.27s1.45,6.82,4.35,8.97c2.9,2.15,7.43,3.22,13.59,3.22Z"/>
+        <path d="M316.56,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.05.44-4.79.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-57.13c0-2.9.58-5.25,1.74-7.05,1.16-1.8,3.02-3.51,5.57-5.14,3.37-2.09,7.66-3.83,12.89-5.22,5.23-1.39,10.97-2.09,17.24-2.09,10.22,0,15.33,2.9,15.33,8.71,0,1.39-.23,2.7-.7,3.92-.47,1.22-.99,2.29-1.57,3.22-1.16-.23-2.61-.46-4.35-.7-1.74-.23-3.6-.35-5.57-.35-4.65,0-8.88.5-12.72,1.48-3.83.99-7.08,2.24-9.75,3.74v63.57Z"/>
+        <path d="M381.35,123.8c2.44,1.74,5.86,2.61,10.28,2.61,1.97,0,4.06-.29,6.27-.87,2.2-.58,4.12-1.28,5.75-2.09.81.93,1.54,1.98,2.18,3.14.64,1.16.96,2.56.96,4.18,0,3.02-1.54,5.52-4.61,7.49-3.08,1.97-7.75,2.96-14.02,2.96-8.71,0-15.65-1.95-20.81-5.83-5.17-3.89-7.75-10.31-7.75-19.25V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.43,2.35,6.44v18.81h27c.46.7.9,1.68,1.31,2.96.41,1.28.61,2.61.61,4.01,0,4.99-2.15,7.49-6.44,7.49h-22.47v41.45c0,4.18,1.22,7.14,3.66,8.88Z"/>
+        <path d="M466.7,139.83c-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44V33.23c.81-.23,1.97-.52,3.48-.87,1.51-.35,3.14-.52,4.88-.52,3.37,0,5.86.64,7.49,1.92,1.63,1.28,2.44,3.43,2.44,6.44v98.24c-.93.35-2.12.67-3.57.96-1.45.29-3.05.44-4.79.44Z"/>
+        <path d="M508.67,119.8c-2.9-5.69-6.44-13.76-10.63-24.21-4.18-10.45-8.25-22.3-12.19-35.53,1.05-1.28,2.44-2.35,4.18-3.22,1.74-.87,3.6-1.31,5.57-1.31,2.55,0,4.64.61,6.27,1.83,1.62,1.22,2.96,3.34,4.01,6.36,3.14,9.41,6.38,18.67,9.75,27.78,3.37,9.12,7.08,18.55,11.15,28.3h.7c1.74-3.71,3.51-8.07,5.31-13.06,1.8-4.99,3.57-10.28,5.31-15.85,1.74-5.57,3.37-11.23,4.88-16.98,1.51-5.75,2.84-11.23,4.01-16.46,1.16-.58,2.35-1.04,3.57-1.39s2.64-.52,4.27-.52c2.55,0,4.7.61,6.44,1.83,1.74,1.22,2.61,3.11,2.61,5.66,0,3.02-.78,7.64-2.35,13.85-1.57,6.21-3.63,13.06-6.18,20.55-2.56,7.49-5.46,15.07-8.71,22.73-3.25,7.66-6.51,14.46-9.75,20.38-5.81,10.22-11.06,18-15.76,23.34-4.7,5.34-9.14,8.01-13.32,8.01-3.25,0-5.84-.9-7.75-2.7-1.92-1.8-3.11-4.04-3.57-6.71,1.86-1.63,3.89-3.6,6.1-5.92,2.2-2.32,4.41-4.82,6.62-7.49,2.2-2.67,4.29-5.43,6.27-8.27,1.97-2.84,3.66-5.6,5.05-8.27-1.98-.58-3.89-1.71-5.75-3.4-1.86-1.68-3.89-4.79-6.1-9.32Z"/>
+      </g>
+      <path d="M417.23,42.46c0-3.02,1.05-5.54,3.14-7.58,2.09-2.03,4.76-3.05,8.01-3.05s5.86,1.02,7.84,3.05c1.97,2.03,2.96,4.56,2.96,7.58s-.99,5.55-2.96,7.58c-1.98,2.03-4.59,3.05-7.84,3.05s-5.92-1.01-8.01-3.05c-2.09-2.03-3.14-4.55-3.14-7.58ZM437.44,138.43c-.81.35-1.95.67-3.4.96-1.45.29-3.11.44-4.96.44-3.37,0-5.87-.64-7.49-1.92-1.63-1.28-2.44-3.42-2.44-6.44v-63.4c.93-.23,2.12-.52,3.57-.87,1.45-.35,3.11-.52,4.96-.52,3.37,0,5.84.64,7.4,1.92,1.57,1.28,2.35,3.48,2.35,6.62v63.23Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <a href="heartily-home.html" class="nav-brand" aria-label="Heartily home">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="nav-pills">
+    <a class="nav-pill" href="heartily-students.html">Students</a>
+    <a class="nav-pill active" href="heartily-admins.html">Schools</a>
+    <a class="nav-pill" href="heartily-employers.html">Employers</a>
+    <a class="nav-pill" href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow" style="color: var(--mulberry); opacity:0.85; margin-bottom: 28px;">For Schools &amp; Districts</p>
+      <h1 class="hero-h1">
+        Your students are making life-defining decisions with almost no information.
+        <span class="l2"><em>Heartily changes that.</em></span>
+      </h1>
+      <p class="hero-sub">
+        A career guidance platform built around honest exposure to real work — not personality quizzes and job listings. Designed for school districts. Free for every student.
+      </p>
+      <div class="cta-row">
+        <a class="cta cta-primary" href="#contact">Request a district demo</a>
+        <a class="cta cta-secondary" href="#how">Download the overview</a>
+      </div>
+      <div class="hero-trust">
+        <span class="dot"></span>Piloting with districts across the Mountain West &amp; Northeast — contact us to join.
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">9 min</div>
+        <div class="hero-stat-l">Average student session — and they return. <em>Voluntarily.</em></div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">44%</div>
+        <div class="hero-stat-l">Return within 7 days. Without an assignment.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">$0</div>
+        <div class="hero-stat-l">Cost to students. Always. <em>By design.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM YOU ALREADY KNOW -->
+<section class="already-know" data-screen-label="02 Problem you know">
+  <div class="inner">
+    <div class="ak-grid">
+      <div>
+        <p class="eyebrow reveal">The problem you already know</p>
+        <h2 class="ak-h reveal"><em>You already know</em> what's broken.</h2>
+        <p class="ak-body reveal">
+          You've seen it from inside the building. Guidance counselors stretched across student loads no one would design from scratch. The college-default assumption that pushes every student toward the same answer. The seniors who arrive at decision-day without a framework for the decision.
+        </p>
+        <p class="ak-body reveal">
+          The honest gap is not effort. It is between what your guidance department is resourced to do and what every student actually needs from this moment.
+        </p>
+        <p class="ak-pivot reveal">
+          <em>Heartily was designed for this environment — not invented in spite of it.</em>
+        </p>
+      </div>
+      <div class="ak-list reveal">
+        <div class="ak-row">
+          <div class="ak-row-num">01</div>
+          <div class="ak-row-text"><strong>Counselor load.</strong> One counselor for every 385 students, on average. The math of a 45-minute meeting and a senior cohort of 300 doesn't work, and no one needs that explained again.</div>
+        </div>
+        <div class="ak-row">
+          <div class="ak-row-num">02</div>
+          <div class="ak-row-text"><strong>Default-college framing.</strong> Pathways outside four-year college remain under-served by the tools you have. CTE deserves the same editorial weight as pre-med — your students rarely see it that way.</div>
+        </div>
+        <div class="ak-row">
+          <div class="ak-row-num">03</div>
+          <div class="ak-row-text"><strong>Engagement problem.</strong> Existing platforms get used because they're assigned. They are abandoned the day the assignment ends. You know which ones.</div>
+        </div>
+        <div class="ak-row">
+          <div class="ak-row-num">04</div>
+          <div class="ak-row-text"><strong>Reporting gap.</strong> "We did career exploration" is hard to say to a board when the artifact is a print-out from a personality quiz a sophomore took once.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT GIVES (dusk) -->
+<section class="bg-dusk gives" data-screen-label="03 What it gives">
+  <div class="inner">
+    <div class="gives-head">
+      <p class="eyebrow reveal">What Heartily gives your district</p>
+      <h2 class="gives-h reveal">Three things, useful from <em>day one</em>.</h2>
+    </div>
+    <div class="gives-list">
+
+      <!-- Block 1 -->
+      <div class="gives-block reveal">
+        <div class="gives-block-text">
+          <div class="gives-block-eyebrow">01 · Engagement</div>
+          <h3 class="gives-block-h">A tool students <em>actually use</em>, voluntarily.</h3>
+          <p class="gives-block-body">
+            The biggest failure mode for career exploration tools is engagement. Heartily's content-first design — honest day-in-the-life career stories across every field — produces genuine curiosity-driven engagement. Not compliance. Not assignment completion. Return visits.
+          </p>
+          <p class="gives-block-body">
+            We measure this carefully and report it back to you. Engagement is a feature, not a vanity metric.
+          </p>
+        </div>
+        <div class="mini-dash">
+          <div class="mini-dash-chrome"><span></span><span></span><span></span></div>
+          <div class="mini-dash-eyebrow">District Engagement · Last 30 Days</div>
+          <div class="dash-stat-row">
+            <div class="dash-stat">
+              <div class="dash-stat-n">9.2</div>
+              <div class="dash-stat-l">Average session, in minutes</div>
+            </div>
+            <div class="dash-stat">
+              <div class="dash-stat-n">44%</div>
+              <div class="dash-stat-l">Return rate within 7 days</div>
+            </div>
+          </div>
+          <div class="dash-foot italic">— No assignment was issued during this period.</div>
+        </div>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="gives-block reveal">
+        <div class="gives-block-text">
+          <div class="gives-block-eyebrow">02 · Insight</div>
+          <h3 class="gives-block-h">Insight your guidance team <em>actually needs</em>.</h3>
+          <p class="gives-block-body">
+            The administrator dashboard surfaces aggregate student interest data — which career categories your students are exploring, where interest is clustering, gaps between student interest and local employment opportunities.
+          </p>
+          <p class="gives-block-body">
+            Data that helps counselors have <em>better</em> conversations — not just <em>more</em> of them.
+          </p>
+        </div>
+        <div class="mini-dash">
+          <div class="mini-dash-chrome"><span></span><span></span><span></span></div>
+          <div class="mini-dash-eyebrow">Where interest is clustering · Junior Class</div>
+          <div class="interest-chart">
+            <div class="interest-bar" style="height:78%;"></div>
+            <div class="interest-bar" style="height:62%;"></div>
+            <div class="interest-bar" style="height:88%;"></div>
+            <div class="interest-bar" style="height:48%;"></div>
+            <div class="interest-bar" style="height:71%;"></div>
+            <div class="interest-bar" style="height:34%;"></div>
+            <div class="interest-bar" style="height:55%;"></div>
+          </div>
+          <div class="interest-label-row">
+            <span>Health</span><span>Trade</span><span>Tech</span><span>Edu</span><span>Biz</span><span>Arts</span><span>Pub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 3 -->
+      <div class="gives-block reveal">
+        <div class="gives-block-text">
+          <div class="gives-block-eyebrow">03 · Reporting</div>
+          <h3 class="gives-block-h">Evidence you can <em>report</em>.</h3>
+          <p class="gives-block-body">
+            Heartily tracks engagement, interest development, and eventual pathway decisions in ways that produce reportable outcomes. Career exploration participation rates. Interest-to-pathway conversion. Employer connections made.
+          </p>
+          <p class="gives-block-body">
+            Numbers a guidance director presents to a principal. Numbers a principal presents to a board.
+          </p>
+        </div>
+        <div class="mini-dash">
+          <div class="mini-dash-chrome"><span></span><span></span><span></span></div>
+          <div class="mini-dash-eyebrow">Q3 Counselor Action Queue</div>
+          <div class="counselor-list">
+            <div class="counselor-row">
+              <div>
+                <div class="counselor-row-name italic">Cohort: Junior · Career interest</div>
+                <div class="counselor-row-meta">412 students · 18 categories tracked</div>
+              </div>
+              <div class="counselor-row-status">Stable</div>
+            </div>
+            <div class="counselor-row flagged">
+              <div>
+                <div class="counselor-row-name italic">3 students · sustained interest in healthcare</div>
+                <div class="counselor-row-meta">Have not explored nursing or allied health</div>
+              </div>
+              <div class="counselor-row-status">Flag</div>
+            </div>
+            <div class="counselor-row flagged">
+              <div>
+                <div class="counselor-row-name italic">7 students · skilled trades engagement</div>
+                <div class="counselor-row-meta">No local apprenticeship intro scheduled</div>
+              </div>
+              <div class="counselor-row-status">Flag</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how" data-screen-label="04 How it works">
+  <div class="inner">
+    <div class="how-head">
+      <p class="eyebrow reveal">How it works in your district</p>
+      <h2 class="how-h reveal">Operational, not <em>aspirational</em>.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-h">District onboarding</h3>
+        <p class="step-body">A single point of contact. Two-week setup. No IT complexity. SSO where you support it.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:120ms;">
+        <div class="step-num">02</div>
+        <h3 class="step-h">Student access</h3>
+        <p class="step-body">Free. No app store. No barriers. Works on any device a student has in their hand.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:240ms;">
+        <div class="step-num">03</div>
+        <h3 class="step-h">Counselor tools</h3>
+        <p class="step-body">A guidance dashboard. Student progress views. Conversation prompts based on interest data.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:360ms;">
+        <div class="step-num">04</div>
+        <h3 class="step-h">Reporting</h3>
+        <p class="step-body">Quarterly district reports on engagement, interest patterns, and pathway outcomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT DOESN'T DO -->
+<section class="doesnt" data-screen-label="05 What it doesn't do">
+  <div class="doesnt-inner">
+    <div>
+      <p class="eyebrow reveal" style="color: var(--mulberry); opacity:0.85;">Boundaries</p>
+      <h2 class="doesnt-h reveal">What Heartily <em>doesn't</em> do.</h2>
+      <p class="doesnt-sub reveal">
+        Most edtech pitches don't have this section. We do — because we'd rather earn your confidence than leave you guessing.
+      </p>
+    </div>
+    <div class="doesnt-list">
+      <div class="doesnt-item reveal">
+        <div class="doesnt-x">×</div>
+        <div class="doesnt-text">Heartily does <strong>not replace guidance counselors</strong>. It extends their reach.</div>
+      </div>
+      <div class="doesnt-item reveal" style="transition-delay:80ms;">
+        <div class="doesnt-x">×</div>
+        <div class="doesnt-text">It does not <strong>tell students what career to pursue</strong>. It helps them figure it out.</div>
+      </div>
+      <div class="doesnt-item reveal" style="transition-delay:160ms;">
+        <div class="doesnt-x">×</div>
+        <div class="doesnt-text">It does not <strong>share individual student data with employers</strong> without explicit consent.</div>
+      </div>
+      <div class="doesnt-item reveal" style="transition-delay:240ms;">
+        <div class="doesnt-x">×</div>
+        <div class="doesnt-text">It does not <strong>require students to create a profile</strong> before exploring.</div>
+      </div>
+      <div class="doesnt-item reveal" style="transition-delay:320ms;">
+        <div class="doesnt-x">×</div>
+        <div class="doesnt-text">It does not contain <strong>advertising, sponsored listings, or employer-funded content</strong> dressed as guidance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="bg-deep pricing" data-screen-label="06 Pricing">
+  <div class="inner">
+    <div class="pricing-head">
+      <p class="eyebrow reveal">Pricing &amp; procurement</p>
+      <h2 class="pricing-h reveal">Simple. <em>No games.</em></h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card feature reveal">
+        <div class="pricing-card-eyebrow">District SaaS · Annual</div>
+        <div class="pricing-amount">$15K–$25K</div>
+        <div class="pricing-amount-sub italic">Per year, for a typical mid-size district. Based on enrollment.</div>
+        <div class="pricing-list">
+          <div class="pricing-li"><strong>Included.</strong> Unlimited student access</div>
+          <div class="pricing-li">Counselor dashboard for the full guidance team</div>
+          <div class="pricing-li">District reporting · quarterly cadence</div>
+          <div class="pricing-li">Onboarding support — single point of contact</div>
+          <div class="pricing-li">Ongoing account management</div>
+        </div>
+        <div class="pricing-list">
+          <div class="pricing-li muted">Not included. Per-student fees</div>
+          <div class="pricing-li muted">Not included. Content upsells</div>
+          <div class="pricing-li muted">Not included. Training costs</div>
+        </div>
+        <div class="pricing-note italic">
+          We know school budget cycles. We're happy to start with a pilot cohort and expand at your next budget window.
+        </div>
+      </div>
+      <div class="pricing-card alt reveal" style="transition-delay:120ms;">
+        <div class="pricing-card-eyebrow">Procurement</div>
+        <div class="pricing-amount" style="font-size:clamp(28px,3vw,40px);">Standard contract.</div>
+        <div class="pricing-amount-sub italic">Available through normal district procurement processes.</div>
+        <div class="pricing-list">
+          <div class="pricing-li"><strong>ESSER-eligible</strong> where applicable</div>
+          <div class="pricing-li">Available on common state purchasing contracts</div>
+          <div class="pricing-li">Data Privacy Agreement on request — model SDPA-compliant</div>
+          <div class="pricing-li">SOC 2 Type II in audit</div>
+          <div class="pricing-li">FERPA &amp; state-by-state student data law alignment</div>
+        </div>
+        <div class="pricing-note italic">
+          Tell us your state and we'll send back the procurement path that's shortest for you.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN DASHBOARD PREVIEW -->
+<section class="admin-preview" data-screen-label="07 Dashboard preview">
+  <div class="inner">
+    <div class="admin-preview-head">
+      <p class="eyebrow reveal" style="color: var(--marmalade); opacity:0.9;">Inside the dashboard</p>
+      <h2 class="admin-preview-h reveal">What your guidance team <em>actually sees</em>.</h2>
+    </div>
+
+    <div class="browser reveal">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">district.heartily.work / overview</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-side">
+          <div class="dash-side-h">District</div>
+          <div class="dash-side-item active">Overview</div>
+          <div class="dash-side-item">Cohorts</div>
+          <div class="dash-side-item">Interest map</div>
+          <div class="dash-side-item">Pathway outcomes</div>
+          <div class="dash-side-h">Counselors</div>
+          <div class="dash-side-item">My students</div>
+          <div class="dash-side-item">Action queue</div>
+          <div class="dash-side-h">Reports</div>
+          <div class="dash-side-item">Quarterly · Q3 2026</div>
+          <div class="dash-side-item">Board export</div>
+        </div>
+        <div class="dash-main">
+          <div class="dash-main-eyebrow">Lincoln Unified · 2,847 students</div>
+          <h3 class="dash-main-h">District overview — this quarter</h3>
+          <div class="dash-kpis">
+            <div class="dash-kpi">
+              <div class="dash-kpi-n">2,109</div>
+              <div class="dash-kpi-l">Active explorers</div>
+              <div class="dash-kpi-trend">+18% vs. Q2</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-n">9.2m</div>
+              <div class="dash-kpi-l">Median session</div>
+              <div class="dash-kpi-trend">+1.4m vs. Q2</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-n">44%</div>
+              <div class="dash-kpi-l">7-day return</div>
+              <div class="dash-kpi-trend">+6 pts</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-n">312</div>
+              <div class="dash-kpi-l">Pathways flagged</div>
+              <div class="dash-kpi-trend">— stable</div>
+            </div>
+          </div>
+
+          <div class="dash-chart-h">Career interest distribution · Junior class</div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-cat italic">Health &amp; clinical</div>
+            <div class="dash-chart-track"><div class="dash-chart-fill" style="--w:88%;"></div></div>
+            <div class="dash-chart-pct">88%</div>
+          </div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-cat italic">Skilled trades</div>
+            <div class="dash-chart-track"><div class="dash-chart-fill" style="--w:62%;"></div></div>
+            <div class="dash-chart-pct">62%</div>
+          </div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-cat italic">Technology</div>
+            <div class="dash-chart-track"><div class="dash-chart-fill" style="--w:71%;"></div></div>
+            <div class="dash-chart-pct">71%</div>
+          </div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-cat italic">Education</div>
+            <div class="dash-chart-track"><div class="dash-chart-fill" style="--w:34%;"></div></div>
+            <div class="dash-chart-pct">34%</div>
+          </div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-cat italic">Business &amp; finance</div>
+            <div class="dash-chart-track"><div class="dash-chart-fill" style="--w:55%;"></div></div>
+            <div class="dash-chart-pct">55%</div>
+          </div>
+
+          <div class="dash-insight">
+            <div class="dash-insight-tag">Flagged insight · For Ms. Alvarez (counselor)</div>
+            3 students in your cohort show <em>sustained</em> interest in healthcare but haven't explored nursing or allied health — consider a targeted 30-minute session this week.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" data-screen-label="08 Voices">
+  <div class="inner">
+    <div class="voices-head">
+      <p class="eyebrow reveal">Voices from practitioners</p>
+      <h2 class="reveal" style="font-size:clamp(28px,3.2vw,44px); font-weight:200; margin-top:22px; letter-spacing:-0.02em; max-width: 680px; margin-left:auto; margin-right:auto; text-wrap: balance;">
+        <em class="italic">Representative perspectives</em> from the guidance practitioners we've spoken with.
+      </h2>
+    </div>
+    <div class="voices-list">
+      <div class="voice reveal">
+        <p class="voice-quote">"The honest challenge is that by the time a student is in my office asking what they should do, I have 45 minutes — and 300 other students on my list."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>Guidance counselor · 11 years</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:120ms;">
+        <p class="voice-quote">"Any tool that students actually open voluntarily — without me assigning it — is already ahead of 90% of what we've tried."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>Guidance director · Mid-size district</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:240ms;">
+        <p class="voice-quote">"I don't need another platform that produces a personality type. I need something my kids will come back to on a Tuesday afternoon."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>High school principal</div>
+      </div>
+      <div class="voice reveal" style="transition-delay:360ms;">
+        <p class="voice-quote">"Boards want outcomes. Right now I can show participation. Heartily would let me show interest-to-pathway conversion — that is a different conversation."</p>
+        <div class="voice-attr"><span class="label">Representative perspective</span>Asst. superintendent · Career &amp; technical education</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact" data-screen-label="09 CTA">
+  <svg class="final-cta-mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true">
+    <path d="M520.52,1426.39c-134.99,31.11-490.59-434.88-480.39-679.54C57.36,333.66,723.53-94.24,698.49,78.98c-108.7,751.85,349.07,301.23,392.8,698.68,27.74,252.14-407.43,667.07-570.77,648.73Z"/>
+  </svg>
+  <div class="final-cta-inner inner">
+    <h2 class="final-cta-h reveal">Let's talk about <em>your district</em>.</h2>
+    <p class="final-cta-sub reveal"><em>We can have a pilot cohort running in two weeks.</em></p>
+    <div class="cta-row reveal" style="justify-content:center;">
+      <a class="cta cta-primary" href="#">Request a demo</a>
+      <a class="cta cta-secondary on-dark" href="#">Download the district overview</a>
+    </div>
+    <div class="final-cta-contact reveal">hello@heartily.work · <a href="#">heartily.work</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="heartily-home.html" class="footer-lockup">
+    <svg class="mark" viewBox="0 0 1121.86 1461.37" aria-hidden="true"><use href="#brand-mark"></use></svg>
+    <svg class="word" viewBox="0 0 589.92 190.3" aria-label="heartily"><use href="#brand-wordmark"></use></svg>
+  </a>
+  <div class="footer-addr">HEARTILY.WORK</div>
+  <p class="footer-tag"><em>Find the work you'd do with your whole heart.</em></p>
+  <div class="footer-rule"></div>
+  <div class="footer-links">
+    <a href="heartily-students.html">Students &amp; Families</a>
+    <a href="heartily-admins.html">School Administrators</a>
+    <a href="heartily-employers.html">Employers</a>
+    <a href="Heartily Pitch Deck.html">Investors</a>
+  </div>
+</footer>
+
+<!-- FEEDBACK -->
+<button class="fb-btn" id="fbBtn">Share feedback</button>
+<div class="fb-overlay" id="fbOverlay" role="dialog" aria-modal="true">
+  <div class="fb-modal">
+    <div id="fbForm">
+      <h3>A few quick questions.</h3>
+      <p class="fb-sub italic">Help us make this clearer for the next administrator who lands here.</p>
+      <div class="fb-q">
+        <div class="fb-q-label">Does this feel relevant to you?</div>
+        <div class="fb-options"><button class="fb-option" data-v="Yes">Yes</button><button class="fb-option" data-v="Somewhat">Somewhat</button><button class="fb-option" data-v="No">No</button></div>
+      </div>
+      <div class="fb-q"><div class="fb-q-label">Most interesting thing on this page?</div><input class="fb-input" id="fbInteresting" type="text" placeholder="In a few words…"></div>
+      <div class="fb-q"><div class="fb-q-label">What's missing?</div><input class="fb-input" id="fbMissing" type="text" placeholder="In a few words…"></div>
+      <div class="fb-actions"><button class="fb-close" id="fbCancel">Close</button><button class="fb-submit" id="fbSubmit">Send</button></div>
+    </div>
+    <div id="fbThanks" style="display:none;">
+      <p class="fb-thanks"><em>Thank you. This goes straight to the team.</em></p>
+      <div class="fb-actions" style="justify-content:center;"><button class="fb-close" id="fbDone">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('nav');
+function updateNavBg() {
+  const y = window.scrollY + 32;
+  const sections = document.querySelectorAll('section, footer');
+  let active = null;
+  sections.forEach(s => {
+    const r = s.getBoundingClientRect();
+    const top = r.top + window.scrollY;
+    if (y >= top && y < top + r.height) active = s;
+  });
+  const isDark = active && (active.classList.contains('bg-deep') || active.classList.contains('bg-dusk') || active.classList.contains('bg-ink') || active.classList.contains('admin-preview') || active.classList.contains('gives') || active.classList.contains('final-cta') || active.classList.contains('footer'));
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+  nav.classList.toggle('scrolled-dark', !!isDark);
+}
+window.addEventListener('scroll', updateNavBg, { passive: true });
+updateNavBg();
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+const fbBtn = document.getElementById('fbBtn');
+const fbOverlay = document.getElementById('fbOverlay');
+const fbForm = document.getElementById('fbForm');
+const fbThanks = document.getElementById('fbThanks');
+fbBtn.addEventListener('click', () => fbOverlay.classList.add('open'));
+document.getElementById('fbCancel').addEventListener('click', () => fbOverlay.classList.remove('open'));
+document.getElementById('fbDone').addEventListener('click', () => { fbOverlay.classList.remove('open'); fbForm.style.display='block'; fbThanks.style.display='none'; });
+fbOverlay.addEventListener('click', (e) => { if (e.target === fbOverlay) fbOverlay.classList.remove('open'); });
+let fbRelevance = null;
+document.querySelectorAll('.fb-options .fb-option').forEach((b) => {
+  b.addEventListener('click', () => {
+    b.parentElement.querySelectorAll('.fb-option').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    fbRelevance = b.dataset.v;
+  });
+});
+document.getElementById('fbSubmit').addEventListener('click', () => {
+  console.log('[Heartily feedback]', {
+    page: 'heartily-admins', relevance: fbRelevance,
+    interesting: document.getElementById('fbInteresting').value,
+    missing: document.getElementById('fbMissing').value,
+    ts: new Date().toISOString(),
+  });
+  fbForm.style.display='none'; fbThanks.style.display='block';
+});
+</script>
+
+</body>
+</html>
