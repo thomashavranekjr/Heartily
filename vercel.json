@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/heartily-students",       "destination": "/students",  "permanent": true },
+    { "source": "/heartily-students.html",  "destination": "/students",  "permanent": true },
+    { "source": "/heartily-admins",         "destination": "/schools",   "permanent": true },
+    { "source": "/heartily-admins.html",    "destination": "/schools",   "permanent": true },
+    { "source": "/heartily-employers",      "destination": "/employers", "permanent": true },
+    { "source": "/heartily-employers.html", "destination": "/employers", "permanent": true },
+    { "source": "/Heartily%20Pitch%20Deck", "destination": "/investors", "permanent": true },
+    { "source": "/Heartily%20Pitch%20Deck.html", "destination": "/investors", "permanent": true },
+    { "source": "/Heartily Pitch Deck",     "destination": "/investors", "permanent": true },
+    { "source": "/Heartily Pitch Deck.html","destination": "/investors", "permanent": true }
+  ]
+}
