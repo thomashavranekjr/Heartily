@@ -8,9 +8,7 @@
     { "source": "/heartily-admins.html",    "destination": "/schools",   "permanent": true },
     { "source": "/heartily-employers",      "destination": "/employers", "permanent": true },
     { "source": "/heartily-employers.html", "destination": "/employers", "permanent": true },
-    { "source": "/Heartily%20Pitch%20Deck", "destination": "/investors", "permanent": true },
-    { "source": "/Heartily%20Pitch%20Deck.html", "destination": "/investors", "permanent": true },
-    { "source": "/Heartily Pitch Deck",     "destination": "/investors", "permanent": true },
-    { "source": "/Heartily Pitch Deck.html","destination": "/investors", "permanent": true }
+    { "source": "/Heartily%20Pitch%20Deck",      "destination": "/investors", "permanent": true },
+    { "source": "/Heartily%20Pitch%20Deck.html", "destination": "/investors", "permanent": true }
   ]
 }
