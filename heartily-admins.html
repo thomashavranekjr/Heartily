@@ -410,6 +410,41 @@ section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw,
 }
 .interest-label-row span { flex: 1; text-align: center; text-transform: uppercase; }
 
+/* Paired CTE gap chart */
+.cte-chart {
+  display: flex; align-items: flex-end; gap: 10px;
+  height: 90px;
+  padding-top: 8px;
+}
+.cte-group {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+.cte-bar-i {
+  flex: 1;
+  background: linear-gradient(to top, #AA2163, #FA6A74, #FCB879);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.85;
+}
+.cte-bar-e {
+  flex: 1;
+  background: rgba(249,248,247,0.15);
+  border-radius: 2px 2px 0 0;
+}
+.cte-legend {
+  display: flex; gap: 14px;
+  margin-top: 9px;
+  font-size: 7.5px; letter-spacing: 0.07em;
+  color: rgba(249,248,247,0.40);
+  text-transform: uppercase;
+}
+.cte-legend-dot {
+  display: inline-block; width: 7px; height: 7px;
+  border-radius: 1px; margin-right: 4px; vertical-align: middle;
+}
+
 /* Counselor list view */
 .counselor-list { display: flex; flex-direction: column; gap: 10px; }
 .counselor-row {
@@ -1104,17 +1139,35 @@ section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw,
         <div class="mini-dash">
           <div class="mini-dash-chrome"><span></span><span></span><span></span></div>
           <div class="mini-dash-eyebrow">Interest vs. CTE Enrollment · Junior Class</div>
-          <div class="interest-chart">
-            <div class="interest-bar" style="height:78%;"></div>
-            <div class="interest-bar" style="height:62%;"></div>
-            <div class="interest-bar" style="height:88%;"></div>
-            <div class="interest-bar" style="height:48%;"></div>
-            <div class="interest-bar" style="height:71%;"></div>
-            <div class="interest-bar" style="height:34%;"></div>
-            <div class="interest-bar" style="height:55%;"></div>
+          <!-- Paired bars: gradient = student interest, muted = current CTE enrollment -->
+          <div class="cte-chart">
+            <div class="cte-group" title="Health &amp; Clinical">
+              <div class="cte-bar-i" style="height:88%;"></div>
+              <div class="cte-bar-e" style="height:72%;"></div>
+            </div>
+            <div class="cte-group" title="Skilled Trades">
+              <div class="cte-bar-i" style="height:62%;"></div>
+              <div class="cte-bar-e" style="height:23%;"></div>
+            </div>
+            <div class="cte-group" title="Technology">
+              <div class="cte-bar-i" style="height:71%;"></div>
+              <div class="cte-bar-e" style="height:35%;"></div>
+            </div>
+            <div class="cte-group" title="Business">
+              <div class="cte-bar-i" style="height:55%;"></div>
+              <div class="cte-bar-e" style="height:58%;"></div>
+            </div>
+            <div class="cte-group" title="Arts &amp; Media">
+              <div class="cte-bar-i" style="height:48%;"></div>
+              <div class="cte-bar-e" style="height:17%;"></div>
+            </div>
           </div>
           <div class="interest-label-row">
-            <span>Health</span><span>Trade</span><span>Tech</span><span>Edu</span><span>Biz</span><span>Arts</span><span>Pub</span>
+            <span>Health</span><span>Trades</span><span>Tech</span><span>Biz</span><span>Arts</span>
+          </div>
+          <div class="cte-legend">
+            <span><span class="cte-legend-dot" style="background:linear-gradient(135deg,#AA2163,#FCB879);"></span>Student interest</span>
+            <span><span class="cte-legend-dot" style="background:rgba(249,248,247,0.18);"></span>CTE enrollment</span>
           </div>
         </div>
       </div>
