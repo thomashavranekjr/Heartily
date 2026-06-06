@@ -66,8 +66,8 @@ h1, h2, h3, h4 {
 .eyebrow {
   font-family: var(--display);
   font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.28em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.55;
 }
@@ -78,25 +78,25 @@ h1, h2, h3, h4 {
 .nav {
   position: fixed;
   inset: 0 0 auto 0;
-  height: 64px;
+  height: 60px;
   padding: 0 clamp(20px, 4vw, 56px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 100;
   transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
-  border-bottom: 1px solid transparent;
+  border-bottom: 0.5px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(20, 16, 29, 0.78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(20, 16, 29, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom-color: rgba(249, 248, 247, 0.06);
 }
 .nav.scrolled-light {
-  background: rgba(249, 248, 247, 0.82);
-  backdrop-filter: blur(18px);
-  border-bottom-color: rgba(54, 43, 71, 0.06);
+  background: rgba(249, 248, 247, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--chalk-mid);
 }
 .nav-brand {
   display: flex;
@@ -214,26 +214,22 @@ section {
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
 }
 .cta-primary {
-  background: var(--grad-h);
-  color: var(--dusk-deep);
+  background: var(--dusk-deep);
+  color: var(--chalk);
   border: 0;
-  font-weight: 400;
+  font-weight: 600;
 }
 .cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(250, 106, 116, 0.5);
+  box-shadow: 0 12px 30px -10px rgba(34, 27, 48, 0.4);
 }
 .cta-secondary {
-  position: relative;
   background: transparent;
-  color: var(--chalk);
-  border: 1.5px solid transparent;
-  background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad-h);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  color: rgba(249, 248, 247, 0.65);
+  border: 1.5px solid rgba(249, 248, 247, 0.18);
 }
 .bg-chalk .cta-secondary {
-  background-image: linear-gradient(var(--chalk), var(--chalk)), var(--grad-h);
+  border-color: var(--chalk-mid);
   color: var(--dusk);
 }
 .cta-secondary:hover { transform: translateY(-2px); }
@@ -529,6 +525,10 @@ section {
   overflow: hidden;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
+.route-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent, transparent);
+}
 .route-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 60px -20px rgba(34, 27, 48, 0.18);
@@ -587,7 +587,7 @@ section {
 .route-chalk .route-cta { border-color: rgba(54, 43, 71, 0.18); color: var(--dusk); }
 
 .route-grad {
-  background: var(--grad);
+  background: var(--accent, var(--grad));
   color: var(--dusk-deep);
   position: relative;
 }
@@ -607,9 +607,9 @@ section {
 /* ═══════════════════════════════════════════════════════════
    PLATFORM PREVIEW
    ═══════════════════════════════════════════════════════════ */
-.platform { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); }
+.platform { padding-top: clamp(100px, 14vh, 160px); padding-bottom: clamp(100px, 14vh, 160px); --accent: #ED9A37; }
 .platform .inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.platform .eyebrow { color: var(--marmalade); opacity: 1; margin-bottom: 32px; }
+.platform .eyebrow { color: var(--accent); opacity: 1; margin-bottom: 32px; }
 
 .preview-frame {
   width: 100%;
@@ -675,14 +675,14 @@ section {
   transition: all 0.3s var(--ease);
 }
 .preview-choice.selected {
-  background: rgba(252, 184, 121, 0.08);
-  border-color: rgba(252, 184, 121, 0.45);
+  background: rgba(237, 154, 55, 0.08);
+  border-color: rgba(237, 154, 55, 0.45);
   color: var(--chalk);
 }
 .preview-choice .dot {
   display: inline-block; width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--grad-h);
+  background: var(--accent, var(--grad-h));
   margin-right: 10px;
   vertical-align: middle;
 }
@@ -701,13 +701,13 @@ section {
 .career-card::before {
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--grad-h);
+  background: var(--accent, var(--grad-h));
 }
 .career-card-tag {
   font-size: 9px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--marmalade);
+  color: var(--accent, var(--marmalade));
   margin-bottom: 14px;
 }
 .career-card-title {
@@ -745,7 +745,7 @@ section {
 }
 .career-stat-fill {
   height: 100%;
-  background: var(--grad-h);
+  background: var(--accent, var(--grad-h));
   width: 0;
   transition: width 1.2s var(--ease);
 }
@@ -845,10 +845,10 @@ section {
 .footer-lockup .word, .footer-lockup .word path { fill: var(--chalk); }
 .footer-addr {
   font-family: var(--display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 10px;
-  letter-spacing: 0.32em;
-  color: rgba(249, 248, 247, 0.4);
+  letter-spacing: 0.18em;
+  color: rgba(249, 248, 247, 0.2);
   margin-bottom: 38px;
 }
 .footer-tag {
@@ -891,12 +891,9 @@ section {
   font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--chalk);
-  background: rgba(34, 27, 48, 0.85);
+  background: rgba(34, 27, 48, 0.92);
   border-radius: 999px;
-  border: 1.5px solid transparent;
-  background-image: linear-gradient(rgba(34, 27, 48, 0.92), rgba(34, 27, 48, 0.92)), var(--grad-h);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  border: 1.5px solid rgba(249, 248, 247, 0.15);
   backdrop-filter: blur(10px);
   transition: transform 0.25s var(--ease);
 }
@@ -950,7 +947,7 @@ section {
   cursor: pointer;
   transition: all 0.2s var(--ease);
 }
-.fb-option:hover, .fb-option.active { background: rgba(252,184,121,0.08); border-color: var(--marmalade); }
+.fb-option:hover, .fb-option.active { background: rgba(237,154,55,0.08); border-color: var(--marmalade); }
 .fb-input {
   width: 100%;
   padding: 10px 12px;
@@ -1136,7 +1133,7 @@ section {
 
     <div class="cards-grid">
       <!-- Card 1: Students -->
-      <a class="route-card route-dusk reveal" href="/students" style="transition-delay:200ms;">
+      <a class="route-card route-dusk reveal" href="/students" style="transition-delay:200ms; --accent:#ED9A37;">
         <div class="icon-wrap" aria-hidden="true">
           <!-- mark with outward glow -->
           <svg viewBox="0 0 64 64" fill="none">
@@ -1153,7 +1150,7 @@ section {
       </a>
 
       <!-- Card 2: Schools -->
-      <a class="route-card route-chalk reveal" href="/schools" style="transition-delay:320ms;">
+      <a class="route-card route-chalk reveal" href="/schools" style="transition-delay:320ms; --accent:#32B7A4;">
         <div class="icon-wrap" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2">
             <rect x="10" y="20" width="44" height="32" rx="2" stroke="currentColor"/>
@@ -1168,7 +1165,7 @@ section {
       </a>
 
       <!-- Card 3: Employers -->
-      <a class="route-card route-grad reveal" href="/employers" style="transition-delay:440ms;">
+      <a class="route-card route-grad reveal" href="/employers" style="transition-delay:440ms; --accent:#E85B87;">
         <div class="icon-wrap" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" stroke-width="1.4">
             <path d="M14 28 L32 14 L50 28" stroke="currentColor"/>

@@ -32,6 +32,10 @@
   --grad-text: linear-gradient(90deg, #AA2163 0%, #FA6A74 60%, #FCB879 100%);
   --serif:   'Instrument Serif', Georgia, serif;
   --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Audience accent — students */
+  --accent:       #ED9A37;
+  --accent-light: color-mix(in srgb, var(--accent) 10%, var(--chalk));
+  --accent-dark:  color-mix(in srgb, var(--accent) 80%, #000);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -66,23 +70,23 @@ h1, h2, h3, h4 {
 .eyebrow {
   font-family: var(--display);
   font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.28em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.55;
 }
 
 /* nav */
 .nav {
-  position: fixed; inset: 0 0 auto 0; height: 64px;
+  position: fixed; inset: 0 0 auto 0; height: 60px;
   padding: 0 clamp(20px, 4vw, 56px);
   display: flex; align-items: center; justify-content: space-between;
   z-index: 100;
   transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
-  border-bottom: 1px solid transparent;
+  border-bottom: 0.5px solid transparent;
 }
-.nav.scrolled { background: rgba(20,16,29,0.78); backdrop-filter: blur(18px); border-bottom-color: rgba(249,248,247,0.06); }
-.nav.scrolled-light { background: rgba(249,248,247,0.82); backdrop-filter: blur(18px); border-bottom-color: rgba(54,43,71,0.06); }
+.nav.scrolled { background: rgba(20,16,29,0.82); backdrop-filter: blur(16px); border-bottom-color: rgba(249,248,247,0.06); }
+.nav.scrolled-light { background: rgba(249,248,247,0.92); backdrop-filter: blur(16px); border-bottom-color: var(--chalk-mid); }
 .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--chalk); transition: color 0.4s var(--ease); }
 .nav.scrolled-light .nav-brand { color: var(--dusk); }
 .nav-brand .nav-logo-light,
@@ -119,6 +123,13 @@ h1, h2, h3, h4 {
 .nav.scrolled-light .nav-pill { color: rgba(54, 43, 71, 0.5); }
 .nav.scrolled-light .nav-pill:hover { color: var(--dusk); background: none; }
 .nav.scrolled-light .nav-pill.active { background: none; color: var(--dusk); }
+.nav-audience-label {
+  color: var(--accent);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 13px;
+  margin-left: 0;
+}
 @media (max-width: 720px) {
   .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; }
 }
@@ -152,25 +163,25 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .cta {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 24px; border-radius: 8px;
-  font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  padding: 13px 26px; border-radius: 8px;
+  font-family: var(--display); font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-.cta-primary { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
-.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(250,106,116,0.5); }
+.cta-primary { background: var(--dusk-deep); color: var(--chalk); }
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px -8px rgba(34, 27, 48, 0.5); }
 .cta-secondary {
-  position: relative; background: transparent;
-  border: 1.5px solid transparent;
-  background-image: linear-gradient(var(--dusk-deep), var(--dusk-deep)), var(--grad-h);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: var(--chalk);
+  background: transparent;
+  border: 1.5px solid rgba(249, 248, 247, 0.18);
+  color: rgba(249, 248, 247, 0.65);
 }
 .cta-secondary.on-chalk {
-  background-image: linear-gradient(var(--chalk), var(--chalk)), var(--grad-h);
+  border-color: var(--chalk-mid);
   color: var(--dusk);
 }
 .cta-secondary:hover { transform: translateY(-2px); }
+/* Accent-section CTA overrides (closing CTA) */
+.final-cta .cta-primary { background: #fff; color: var(--accent); }
+.final-cta .cta-secondary { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.75); }
 
 /* ═══════════════════════════════════════════════════════════
    STUDENT-SPECIFIC: HERO
@@ -225,17 +236,25 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   max-width: 720px;
   margin-bottom: 44px;
 }
+.hero-sub::after {
+  content: "";
+  display: block;
+  width: 48px; height: 2px;
+  background: var(--accent);
+  margin-top: 28px;
+  margin-bottom: -14px;
+}
 .hero-note {
   font-family: var(--display);
-  font-size: 11px; font-weight: 300; letter-spacing: 0.18em;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(252, 184, 121, 0.7);
+  color: rgba(237, 154, 55, 0.7);
   margin-top: 22px;
   display: inline-flex; align-items: center; gap: 8px;
 }
 .hero-note::before {
   content: ""; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--grad-h);
+  background: var(--accent);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -253,7 +272,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
-.problem-feel em { color: var(--mulberry); font-style: italic; }
+.problem-feel em { color: var(--accent); font-style: italic; }
 .problem-lede {
   font-family: var(--serif);
   font-size: clamp(18px, 1.55vw, 22px);
@@ -275,7 +294,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   grid-template-columns: 220px 1fr;
   gap: 48px;
   align-items: baseline;
-  border-top: 1px solid rgba(54, 43, 71, 0.1);
+  border-top: 0.5px solid var(--chalk-mid);
   padding-top: 36px;
 }
 @media (max-width: 760px) {
@@ -286,9 +305,9 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 }
 .vignette-tag {
   font-family: var(--display);
-  font-size: 10px; font-weight: 300; letter-spacing: 0.22em;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--mulberry);
+  color: var(--accent);
 }
 .vignette-title {
   font-family: var(--display);
@@ -341,10 +360,9 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   font-weight: 100;
   font-size: 80px;
   line-height: 0.9;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
+  background: none;
+  -webkit-text-fill-color: var(--accent);
 }
 .does-h {
   font-family: var(--display);
@@ -368,7 +386,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
    REFRAME MOMENT (gradient)
    ═══════════════════════════════════════════════════════════ */
 .reframe {
-  background: var(--grad);
+  background: var(--accent);
   color: var(--dusk-deep);
   padding-top: clamp(120px, 18vh, 200px);
   padding-bottom: clamp(120px, 18vh, 200px);
@@ -431,13 +449,13 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   position: absolute;
   inset: 0 auto 0 0;
   width: 4px;
-  background: var(--grad);
+  background: var(--accent);
 }
 .families-eyebrow {
   font-family: var(--display);
-  font-size: 10px; font-weight: 300; letter-spacing: 0.28em;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--mulberry);
+  color: var(--accent);
   margin-bottom: 28px;
 }
 .families-h {
@@ -477,7 +495,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   position: absolute;
   left: 0; top: 12px;
   width: 14px; height: 1px;
-  background: var(--grad-h);
+  background: var(--accent);
 }
 .families-sign {
   margin-top: 36px;
@@ -496,7 +514,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   background: var(--dusk-deep);
   color: var(--chalk);
 }
-.preview-mobile .eyebrow { color: var(--marmalade); opacity: 1; }
+.preview-mobile .eyebrow { color: var(--accent); opacity: 1; }
 .preview-mobile-head { text-align: center; max-width: 780px; margin: 0 auto 80px; }
 .preview-mobile-h {
   font-size: clamp(32px, 4vw, 56px);
@@ -586,12 +604,12 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 .p1-card.featured::before {
   content: "";
   position: absolute; left: 0; right: 0; top: 0; height: 2px;
-  background: var(--grad-h);
+  background: var(--accent);
   border-radius: 12px 12px 0 0;
 }
 .p1-card-tag {
   font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--marmalade);
+  color: var(--accent);
   margin-bottom: 6px;
 }
 .p1-card-title {
@@ -640,7 +658,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   border-top: 1px solid rgba(249,248,247,0.08);
   border-bottom: 1px solid rgba(249,248,247,0.08);
 }
-.p2-q em { color: var(--marmalade); }
+.p2-q em { color: var(--accent); }
 .p2-choices { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-bottom: 8px; }
 .p2-choice {
   padding: 10px 12px;
@@ -651,8 +669,9 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   color: rgba(249, 248, 247, 0.8);
 }
 .p2-choice.yes {
-  background: rgba(252,184,121,0.08);
-  border-color: rgba(252,184,121,0.4);
+  background: var(--accent-light);
+  border-color: rgba(237, 154, 55, 0.4);
+  border-left: 3px solid var(--accent);
 }
 
 /* Phone 3 — reward profile building */
@@ -678,7 +697,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   margin-bottom: 6px;
   letter-spacing: 0.04em;
 }
-.p3-bar-label .val { color: var(--marmalade); font-weight: 400; }
+.p3-bar-label .val { color: var(--accent); font-weight: 400; }
 .p3-bar-track {
   height: 3px; border-radius: 2px;
   background: rgba(249,248,247,0.08);
@@ -686,7 +705,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 }
 .p3-bar-fill {
   height: 100%;
-  background: var(--grad-h);
+  background: var(--accent);
   width: 0;
   transition: width 1.2s var(--ease);
 }
@@ -710,7 +729,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   color: var(--chalk);
   margin-bottom: 16px;
 }
-.non-neg-h em { font-family: var(--serif); font-style: italic; font-weight: 400; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.non-neg-h em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--accent); background: none; -webkit-text-fill-color: var(--accent); }
 .non-neg-h .l2 { display: block; }
 .non-neg-body {
   font-family: var(--serif);
@@ -727,16 +746,16 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 .final-cta {
   padding-top: clamp(120px, 18vh, 200px);
   padding-bottom: clamp(120px, 18vh, 200px);
-  background: var(--dusk-deep);
-  color: var(--chalk);
+  background: var(--accent);
+  color: #fff;
   text-align: center;
   position: relative;
 }
 .final-cta::before {
   content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(170,33,99,0.22), transparent 65%),
-    radial-gradient(ellipse 50% 45% at 80% 20%, rgba(252,184,121,0.12), transparent 65%);
+    radial-gradient(ellipse 55% 50% at 20% 80%, rgba(255,255,255,0.12), transparent 65%),
+    radial-gradient(ellipse 50% 45% at 80% 20%, rgba(0,0,0,0.08), transparent 65%);
   pointer-events: none;
 }
 .final-cta-mark {
@@ -746,7 +765,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   opacity: 0.06;
   pointer-events: none;
 }
-.final-cta-mark path { fill: var(--chalk) !important; }
+.final-cta-mark path { fill: #fff !important; }
 .final-cta-inner { position: relative; z-index: 1; }
 .final-cta-h {
   font-family: var(--display);
@@ -755,13 +774,14 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   line-height: 0.95;
   letter-spacing: -0.035em;
   margin-bottom: 28px;
+  color: #fff;
 }
-.final-cta-h em { font-family: var(--serif); font-style: italic; font-weight: 400; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.final-cta-h em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #fff; background: none; -webkit-text-fill-color: #fff; }
 .final-cta-sub {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(18px, 1.5vw, 22px);
-  color: rgba(249, 248, 247, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 48px;
 }
 
@@ -773,7 +793,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 .footer-lockup .mark { width: 26px; height: 34px; }
 .footer-lockup .word { width: 112px; }
 .footer-lockup .word, .footer-lockup .word path { fill: var(--chalk); }
-.footer-addr { font-family: var(--display); font-weight: 300; font-size: 10px; letter-spacing: 0.32em; color: rgba(249,248,247,0.4); margin-bottom: 38px; }
+.footer-addr { font-family: var(--display); font-weight: 500; font-size: 10px; letter-spacing: 0.18em; color: rgba(249,248,247,0.2); margin-bottom: 38px; }
 .footer-tag { font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.6vw,22px); color: rgba(249,248,247,0.75); max-width: 520px; margin: 0 auto 38px; line-height: 1.4; }
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: 12px; font-weight: 300; letter-spacing: 0.05em; color: rgba(249,248,247,0.55); }
 .footer-links a { transition: color 0.25s var(--ease); }
@@ -865,6 +885,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
   <a href="/" class="nav-brand" aria-label="Tuesday home">
     <img class="nav-logo-dark" src="/logo-dark.svg" alt="Tuesday">
     <img class="nav-logo-light" src="/logo-light.svg" alt="" aria-hidden="true">
+    <span class="nav-audience-label">Students</span>
   </a>
   <div class="nav-pills">
     <a class="nav-pill active" href="/students">Students</a>
@@ -878,7 +899,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 <section class="hero bg-ink" data-screen-label="01 Hero">
   <svg class="hero-mark-bg" viewBox="0 0 204.68 204.68" aria-hidden="true"><use href="#brand-mark"></use></svg>
   <div class="hero-inner">
-    <p class="eyebrow" style="color: var(--marmalade); opacity: 0.9; margin-bottom: 28px;">For students &amp; families</p>
+    <p class="eyebrow" style="color: var(--accent); opacity: 0.9; margin-bottom: 28px;">For students &amp; families</p>
     <h1 class="hero-h1">
       Find the Tuesday that fits.
     </h1>
