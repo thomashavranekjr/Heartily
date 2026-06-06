@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════
    SHARED TOKENS (same across all four sites)
@@ -23,14 +23,20 @@
   --mulberry:  #AA2163;
   --grad:   linear-gradient(135deg, #AA2163 0%, #FA6A74 52%, #FCB879 100%);
   --grad-h: linear-gradient(90deg,  #AA2163 0%, #FA6A74 52%, #FCB879 100%);
-  --display: 'Host Grotesk', system-ui, sans-serif;
+  --display: 'Baloo 2', system-ui, sans-serif;
+  --font-display: 'Baloo 2', sans-serif;
+  --font-body: 'Instrument Serif', serif;
+  --chalk-mid: #EDEAE2;
+  --dusk-muted: #7A6E8A;
+  --dusk-faint: rgba(54, 43, 71, 0.06);
+  --grad-text: linear-gradient(90deg, #AA2163 0%, #FA6A74 60%, #FCB879 100%);
   --serif:   'Instrument Serif', Georgia, serif;
   --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--display);
+  font-family: var(--serif);
   color: var(--dusk);
   background: var(--chalk);
   -webkit-font-smoothing: antialiased;
@@ -43,15 +49,15 @@ button { background: none; border: 0; }
 a { text-decoration: none; }
 em { font-style: italic; }
 h1, h2, h3, h4 {
-  font-family: var(--display);
-  font-weight: 200;
+  font-family: var(--serif);
+  font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.05;
 }
 .serif  { font-family: var(--serif); font-style: normal; }
 .italic { font-family: var(--serif); font-style: italic; }
 .grad-text {
-  background: var(--grad);
+  background: var(--grad-text);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,26 +89,34 @@ h1, h2, h3, h4 {
 .nav-brand .word { width: 92px; }
 .nav-brand .word, .nav-brand .word path { fill: currentColor; }
 .nav-pills {
-  display: flex; align-items: center; gap: 4px; padding: 4px;
-  border-radius: 999px;
-  border: 1px solid rgba(249,248,247,0.12);
-  background: rgba(249,248,247,0.02);
-  transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: none;
 }
-.nav.scrolled-light .nav-pills { border-color: rgba(54,43,71,0.12); background: rgba(54,43,71,0.02); }
+.nav.scrolled-light .nav-pills,
+.nav.scrolled .nav-pills { border: none; background: none; }
 .nav-pill {
-  padding: 8px 14px; border-radius: 999px;
-  font-size: 11px; font-weight: 300; letter-spacing: 0.08em;
-  color: rgba(249,248,247,0.62);
-  transition: all 0.25s var(--ease); white-space: nowrap;
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: rgba(249, 248, 247, 0.55);
+  transition: color 0.15s ease;
+  white-space: nowrap;
+  background: none;
 }
-.nav.scrolled-light .nav-pill { color: rgba(54,43,71,0.58); }
-.nav-pill:hover { color: var(--chalk); background: rgba(249,248,247,0.06); }
-.nav.scrolled-light .nav-pill:hover { color: var(--dusk); background: rgba(54,43,71,0.05); }
-.nav-pill.active {
-  background: var(--grad-h); color: var(--dusk-deep); font-weight: 400;
-}
-.nav-pill.active:hover { color: var(--dusk-deep); }
+.nav-pill:hover { background: none; color: rgba(249, 248, 247, 0.9); }
+.nav-pill.active { background: none; color: rgba(249, 248, 247, 0.9); font-weight: 500; }
+.nav-pill.active:hover { color: rgba(249, 248, 247, 0.9); }
+.nav.scrolled-light .nav-pill { color: rgba(54, 43, 71, 0.5); }
+.nav.scrolled-light .nav-pill:hover { color: var(--dusk); background: none; }
+.nav.scrolled-light .nav-pill.active { background: none; color: var(--dusk); }
 @media (max-width: 720px) {
   .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; }
 }
@@ -113,7 +127,7 @@ h1, h2, h3, h4 {
   .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
 }
 
-section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw, 80px); overflow: hidden; }
+section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw, 80px); overflow: hidden; }
 .bg-deep   { background: var(--dusk-deep); color: var(--chalk); }
 .bg-ink    { background: var(--dusk-ink);  color: var(--chalk); }
 .bg-dusk   { background: var(--dusk);      color: var(--chalk); }
@@ -122,7 +136,7 @@ section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw,
 .inner { max-width: 1240px; margin: 0 auto; position: relative; }
 .inner-narrow { max-width: 760px; margin: 0 auto; position: relative; }
 
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
 .mark-texture {
@@ -136,7 +150,7 @@ section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw,
 .cta {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 24px; border-radius: 8px;
-  font-family: var(--display); font-size: 13px; font-weight: 300; letter-spacing: 0.04em;
+  font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .cta-primary { background: var(--grad-h); color: var(--dusk-deep); font-weight: 400; }
@@ -187,8 +201,9 @@ section { position: relative; padding: clamp(80px, 11vh, 140px) clamp(20px, 5vw,
   width: 100%;
 }
 .hero-h1 {
-  font-family: var(--display);
-  font-weight: 100;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
   font-size: clamp(48px, 10vw, 156px);
   line-height: 0.92;
   letter-spacing: -0.045em;
