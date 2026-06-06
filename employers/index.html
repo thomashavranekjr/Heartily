@@ -50,9 +50,11 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0
 .nav.scrolled-light { background: rgba(249,248,247,0.82); backdrop-filter: blur(18px); border-bottom-color: rgba(54,43,71,0.06); }
 .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--chalk); transition: color 0.4s var(--ease); }
 .nav.scrolled-light .nav-brand { color: var(--dusk); }
-.nav-brand .mark { width: 22px; height: 28px; }
-.nav-brand .word { width: 92px; }
-.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-brand .nav-logo-light,
+.nav-brand .nav-logo-dark { height: 48px; width: auto; display: block; }
+.nav-brand .nav-logo-light { display: none; }
+.nav.scrolled-light .nav-brand .nav-logo-light { display: block; }
+.nav.scrolled-light .nav-brand .nav-logo-dark { display: none; }
 .nav-pills {
   display: flex;
   align-items: center;
@@ -85,7 +87,8 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0
 @media (max-width: 720px) { .nav-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.06em; } }
 @media (max-width: 480px) {
   .nav { padding: 0 14px; }
-  .nav-brand .word { display: none; }
+  .nav-brand .nav-logo-light,
+  .nav-brand .nav-logo-dark { height: 36px; }
   .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
   .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
 }
@@ -898,7 +901,7 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 .fb-close { font-size: 11px; color: rgba(249,248,247,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
 .fb-submit { padding: 10px 18px; border-radius: 8px; background: var(--grad-h); color: var(--dusk-deep); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; }
 .fb-thanks { text-align: center; padding: 20px 0; font-family: var(--serif); font-style: italic; font-size: 18px; color: rgba(249,248,247,0.8); }
-@media (max-width: 720px) { .nav { height: 56px; } .nav-brand .word { width: 70px; } }
+@media (max-width: 720px) { .nav { height: 56px; } .nav-brand .nav-logo-light, .nav-brand .nav-logo-dark { height: 40px; } }
 </style>
   <!-- PostHog Analytics -->
   <script>
@@ -946,8 +949,8 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 
 <nav class="nav" id="nav">
   <a href="/" class="nav-brand" aria-label="Tuesday home">
-    <svg class="mark" viewBox="0 0 204.68 204.68" aria-hidden="true"><use href="#brand-mark"></use></svg>
-    <svg class="word" viewBox="0 0 557.14 267.4" aria-label="Tuesday"><use href="#brand-wordmark"></use></svg>
+    <img class="nav-logo-dark" src="/logo-dark.svg" alt="Tuesday">
+    <img class="nav-logo-light" src="/logo-light.svg" alt="" aria-hidden="true">
   </a>
   <div class="nav-pills">
     <a class="nav-pill" href="/students">Students</a>

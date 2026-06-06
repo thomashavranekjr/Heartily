@@ -107,9 +107,11 @@ h1, h2, h3, h4 {
 }
 .nav.scrolled-light .nav-brand { color: var(--dusk); }
 .nav.scrolled:not(.scrolled-light) .nav-brand { color: var(--chalk); }
-.nav-brand .mark { width: 40px; height: 40px; }
-.nav-brand .word { width: 100px; }
-.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-brand .nav-logo-light,
+.nav-brand .nav-logo-dark { height: 48px; width: auto; display: block; }
+.nav-brand .nav-logo-dark { display: none; }
+.nav.scrolled:not(.scrolled-light) .nav-brand .nav-logo-light { display: none; }
+.nav.scrolled:not(.scrolled-light) .nav-brand .nav-logo-dark { display: block; }
 .nav-pills {
   display: flex;
   align-items: center;
@@ -150,7 +152,8 @@ h1, h2, h3, h4 {
 }
 @media (max-width: 480px) {
   .nav { padding: 0 14px; }
-  .nav-brand .word { display: none; }
+  .nav-brand .nav-logo-light,
+  .nav-brand .nav-logo-dark { height: 36px; }
   .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
   .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
 }
@@ -989,7 +992,8 @@ section {
 /* responsive */
 @media (max-width: 720px) {
   .nav { height: 56px; }
-  .nav-brand .word { width: 70px; }
+  .nav-brand .nav-logo-light,
+  .nav-brand .nav-logo-dark { height: 40px; }
   section { padding-left: 20px; padding-right: 20px; }
   .preview-frame { aspect-ratio: auto; }
   .preview-body { padding: 24px; }
@@ -1043,8 +1047,8 @@ section {
 <!-- ═══════ NAV ═══════ -->
 <nav class="nav" id="nav">
   <a href="/" class="nav-brand" aria-label="Tuesday home">
-    <svg class="mark" viewBox="0 0 204.68 204.68" aria-hidden="true"><use href="#brand-mark"></use></svg>
-    <svg class="word" viewBox="0 0 557.14 267.4" aria-label="Tuesday"><use href="#brand-wordmark"></use></svg>
+    <img class="nav-logo-light" src="/logo-light.svg" alt="Tuesday">
+    <img class="nav-logo-dark" src="/logo-dark.svg" alt="" aria-hidden="true">
   </a>
   <div class="nav-pills">
     <a class="nav-pill" href="/students">Students</a>

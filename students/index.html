@@ -85,9 +85,11 @@ h1, h2, h3, h4 {
 .nav.scrolled-light { background: rgba(249,248,247,0.82); backdrop-filter: blur(18px); border-bottom-color: rgba(54,43,71,0.06); }
 .nav-brand { display: flex; align-items: center; gap: 10px; color: var(--chalk); transition: color 0.4s var(--ease); }
 .nav.scrolled-light .nav-brand { color: var(--dusk); }
-.nav-brand .mark { width: 22px; height: 28px; }
-.nav-brand .word { width: 92px; }
-.nav-brand .word, .nav-brand .word path { fill: currentColor; }
+.nav-brand .nav-logo-light,
+.nav-brand .nav-logo-dark { height: 48px; width: auto; display: block; }
+.nav-brand .nav-logo-light { display: none; }
+.nav.scrolled-light .nav-brand .nav-logo-light { display: block; }
+.nav.scrolled-light .nav-brand .nav-logo-dark { display: none; }
 .nav-pills {
   display: flex;
   align-items: center;
@@ -122,7 +124,8 @@ h1, h2, h3, h4 {
 }
 @media (max-width: 480px) {
   .nav { padding: 0 14px; }
-  .nav-brand .word { display: none; }
+  .nav-brand .nav-logo-light,
+  .nav-brand .nav-logo-dark { height: 36px; }
   .nav-pills { gap: 0; padding: 3px; flex-wrap: nowrap; }
   .nav-pill { padding: 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; }
 }
@@ -808,7 +811,8 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 
 @media (max-width: 720px) {
   .nav { height: 56px; }
-  .nav-brand .word { width: 70px; }
+  .nav-brand .nav-logo-light,
+  .nav-brand .nav-logo-dark { height: 40px; }
 }
 </style>
   <!-- PostHog Analytics -->
@@ -859,8 +863,8 @@ section { position: relative; padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw,
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="/" class="nav-brand" aria-label="Tuesday home">
-    <svg class="mark" viewBox="0 0 204.68 204.68" aria-hidden="true"><use href="#brand-mark"></use></svg>
-    <svg class="word" viewBox="0 0 557.14 267.4" aria-label="Tuesday"><use href="#brand-wordmark"></use></svg>
+    <img class="nav-logo-dark" src="/logo-dark.svg" alt="Tuesday">
+    <img class="nav-logo-light" src="/logo-light.svg" alt="" aria-hidden="true">
   </a>
   <div class="nav-pills">
     <a class="nav-pill active" href="/students">Students</a>
