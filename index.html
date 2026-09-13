@@ -191,27 +191,27 @@
       box-shadow: 0 3.22px 32.22px rgba(0,0,0,0.08);
     }
 
-    /* Slot 1: back-left */
+    /* Slot 1: back-left – mostly behind front, peeking left edge */
     .browse-card[data-slot="1"] {
-      left: 12px; top: 50px;
+      left: 86px; top: 16px;
       transform: rotate(-8.76deg) scale(0.91);
       z-index: 3;
       border-radius: 32px;
       box-shadow: 0 2.77px 27.72px rgba(0,0,0,0.08);
     }
 
-    /* Slot 2: back-right-near */
+    /* Slot 2: back-right-near – mostly behind, peeking right edge */
     .browse-card[data-slot="2"] {
-      left: 248px; top: 14px;
+      left: 146px; top: 10px;
       transform: rotate(7.36deg) scale(0.87);
       z-index: 2;
       border-radius: 32px;
       box-shadow: 0 2.56px 25.64px rgba(0,0,0,0.08);
     }
 
-    /* Slot 3: back-right-deep */
+    /* Slot 3: back-right-deep – fully behind, rotation peeks corner right */
     .browse-card[data-slot="3"] {
-      left: 262px; top: 28px;
+      left: 158px; top: 22px;
       transform: rotate(17.74deg) scale(0.80);
       z-index: 1;
       border-radius: 32px;
@@ -225,7 +225,7 @@
     .browse-card-top {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
     }
 
