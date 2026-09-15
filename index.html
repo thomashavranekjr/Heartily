@@ -367,6 +367,141 @@
       .how-cards { grid-template-columns: 1fr; }
     }
 
+    /* ── ROI STATS ───────────────────────────────────────────────────── */
+    .roi {
+      padding: 96px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      text-align: center;
+      background: var(--chalk);
+    }
+
+    .roi-heading {
+      font-family: var(--serif);
+      font-size: clamp(38px, 6vw, 97px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--blackboard);
+      max-width: 860px;
+    }
+
+    .roi-heading em {
+      font-style: italic;
+    }
+
+    .roi-sub {
+      font-size: clamp(15px, 1.4vw, 22px);
+      color: var(--dry-erase);
+      line-height: 1.45;
+      max-width: 760px;
+    }
+
+    .roi-stats {
+      display: flex;
+      gap: 80px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .roi-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 260px;
+    }
+
+    .roi-stat-number {
+      font-family: var(--serif);
+      font-size: clamp(56px, 7vw, 97px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      background: linear-gradient(142.31deg, #ED9A37 1.62%, #A737ED 136.25%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .roi-stat-label {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blackboard);
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .roi-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 20px 40px;
+      border-radius: 9999px;
+      background: var(--dusk);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .roi-btn:hover { opacity: 0.85; }
+
+    /* ── AI RISK ──────────────────────────────────────────────────────── */
+    .ai-risk {
+      background: var(--dusk);
+      padding: 96px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .ai-risk-heading {
+      font-family: var(--serif);
+      font-size: clamp(38px, 6vw, 97px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--chalk);
+      max-width: 860px;
+    }
+
+    .ai-risk-heading em {
+      font-style: italic;
+    }
+
+    .ai-risk-subhead {
+      font-size: clamp(16px, 1.5vw, 24px);
+      font-weight: 800;
+      color: var(--chalk);
+      max-width: 640px;
+      line-height: 1.3;
+    }
+
+    .ai-risk-body {
+      font-size: clamp(14px, 1.2vw, 18px);
+      font-weight: 400;
+      color: rgba(249, 248, 247, 0.7);
+      max-width: 640px;
+      line-height: 1.5;
+    }
+
+    .ai-risk-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 20px 40px;
+      border-radius: 9999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+      margin-top: 8px;
+    }
+    .ai-risk-btn:hover { opacity: 0.85; }
+
     /* ── DOWNLOAD ────────────────────────────────────────────────────── */
     .download {
       display: flex;
@@ -634,6 +769,35 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ── ROI STATS ────────────────────────────────────────────────────── -->
+  <section class="roi">
+    <h2 class="roi-heading">Some paths cost more<br>than they <em>ever</em> pay back.</h2>
+    <p class="roi-sub">It might be the major. It might be the school. But nearly a third of college programs come out behind. For reasons that rarely show up in the brochure.</p>
+    <div class="roi-stats">
+      <div class="roi-stat">
+        <span class="roi-stat-number">23%</span>
+        <p class="roi-stat-label">Of bachelor's programs have negative lifetime ROI</p>
+      </div>
+      <div class="roi-stat">
+        <span class="roi-stat-number">43%</span>
+        <p class="roi-stat-label">Of associate's programs have negative lifetime ROI</p>
+      </div>
+      <div class="roi-stat">
+        <span class="roi-stat-number">40%</span>
+        <p class="roi-stat-label">Of master's programs have negative lifetime ROI</p>
+      </div>
+    </div>
+    <a class="roi-btn" href="https://app.zaptitude.io/explore">Compare Paths</a>
+  </section>
+
+  <!-- ── AI RISK ───────────────────────────────────────────────────────── -->
+  <section class="ai-risk">
+    <h2 class="ai-risk-heading">The job market is changing. <em>Fast.</em></h2>
+    <p class="ai-risk-subhead">Early-career workers in the most AI-exposed jobs have seen employment drop 13% since generative AI took off</p>
+    <p class="ai-risk-body">We'll show you which fields are shifting, which are holding steady, and which are just getting started. So you're choosing a path, not a moving target.</p>
+    <a class="ai-risk-btn" href="https://app.zaptitude.io/explore">See your path's AI Risk</a>
   </section>
 
   <!-- ── DOWNLOAD ──────────────────────────────────────────────────────── -->
