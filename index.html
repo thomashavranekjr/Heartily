@@ -253,6 +253,12 @@
       align-items: center;
       justify-content: center;
       padding: 13px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+    .browse-card-arrow:hover {
+      background: #ebe9e8;
     }
 
     .browse-card-arrow svg {
@@ -681,12 +687,12 @@
             </svg>
             <span class="browse-card-label">By category</span>
           </div>
-          <div class="browse-card-arrow">
+          <a class="browse-card-arrow" href="https://app.zaptitude.io/explore?tab=category" target="_blank" rel="noopener">
             <svg width="28" height="28" viewBox="0 0 45.1044 45.1044" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.04755 22.5522H38.0568" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M25.3712 9.86658L38.0568 22.5522L25.3712 35.2378" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+          </a>
         </div>
 
         <!-- Slot 2: back-right-near (By education) -->
@@ -699,12 +705,12 @@
             </svg>
             <span class="browse-card-label">By education</span>
           </div>
-          <div class="browse-card-arrow">
+          <a class="browse-card-arrow" href="https://app.zaptitude.io/explore?tab=education" target="_blank" rel="noopener">
             <svg width="28" height="28" viewBox="0 0 45.1044 45.1044" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.04755 22.5522H38.0568" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M25.3712 9.86658L38.0568 22.5522L25.3712 35.2378" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+          </a>
         </div>
 
         <!-- Slot 1: back-left (By vibe) -->
@@ -719,12 +725,12 @@
             </svg>
             <span class="browse-card-label">By vibe</span>
           </div>
-          <div class="browse-card-arrow">
+          <a class="browse-card-arrow" href="https://app.zaptitude.io/explore?tab=vibe" target="_blank" rel="noopener">
             <svg width="28" height="28" viewBox="0 0 45.1044 45.1044" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.04755 22.5522H38.0568" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M25.3712 9.86658L38.0568 22.5522L25.3712 35.2378" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+          </a>
         </div>
 
         <!-- Slot 0: front card (By interest) -->
@@ -735,12 +741,12 @@
             </svg>
             <span class="browse-card-label">By interest</span>
           </div>
-          <div class="browse-card-arrow">
+          <a class="browse-card-arrow" href="https://app.zaptitude.io/explore?tab=interest" target="_blank" rel="noopener">
             <svg width="28" height="28" viewBox="0 0 45.1044 45.1044" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7.04755 22.5522H38.0568" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M25.3712 9.86658L38.0568 22.5522L25.3712 35.2378" stroke="currentColor" stroke-width="2.81902" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -856,7 +862,8 @@
       var stack = document.getElementById('cardStack');
       if (!stack) return;
 
-      stack.addEventListener('click', function () {
+      stack.addEventListener('click', function (e) {
+        if (e.target.closest('.browse-card-arrow')) return;
         var cards = Array.from(stack.querySelectorAll('.browse-card'));
         cards.forEach(function (card) {
           var slot = parseInt(card.dataset.slot, 10);
