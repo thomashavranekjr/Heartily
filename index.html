@@ -37,6 +37,7 @@
       --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
+    html { overflow-x: hidden; }
     body {
       font-family: var(--sans);
       color: var(--blackboard);
@@ -109,7 +110,7 @@
       justify-content: space-between;
       padding: 80px 80px 0;
       gap: 32px;
-      overflow: visible;
+      overflow-x: clip;
     }
 
     .hero-left {
@@ -178,7 +179,7 @@
       height: 340px;
       cursor: pointer;
       z-index: 10;
-      overflow: visible;
+      overflow-x: clip;
     }
 
     .browse-card {
