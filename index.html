@@ -292,7 +292,7 @@
     }
 
     @media (max-width: 680px) {
-      /* Hero */
+      /* Hero — base hero CSS is above this block so overrides apply correctly */
       .hero { padding: 36px 20px 0; overflow-x: clip; }
       .hero-left { max-width: 100%; gap: 20px; }
       .hero-h1 { font-size: 86px; }
@@ -300,30 +300,6 @@
       .hero-right { padding-top: 32px; overflow-x: clip; }
       .hero-right-label { font-size: clamp(22px, 6vw, 32px); margin-bottom: 20px; }
       .cards-stack { height: 260px; }
-
-      /* How section */
-      .how { margin: -100px 8px 0; padding: 140px 16px 32px; border-radius: 20px; }
-      .how-cards { grid-template-columns: 1fr; }
-
-      /* ROI section */
-      .roi { padding: 32px 20px; }
-      .roi-stats { flex-direction: column; align-items: center; gap: 48px; }
-
-      /* AI risk section */
-      .ai-risk { padding: 32px 20px; }
-      .ai-risk-subhead { font-size: 20px; }
-      .ai-risk-body { font-size: 16px; }
-      .ai-risk-btn { font-size: 20px; padding: 18px 32px; }
-
-      /* Download section */
-      .download { padding: 32px 20px; }
-      .download::before { height: 360px; }
-      .app-icon { width: 200px; height: 200px; border-radius: 40px; }
-      .app-icon img { width: 136px; height: 136px; }
-      .store-btns { flex-direction: column; align-items: center; gap: 12px; margin-top: 8px; }
-
-      /* Footer CTA */
-      .footer-cta { padding: 32px 24px; }
     }
 
     /* ── HOW IT WORKS ────────────────────────────────────────────────── */
@@ -696,6 +672,27 @@
       transition: opacity 0.15s;
     }
     .footer-cta-btn:hover { opacity: 0.85; }
+    /* ── MOBILE SECTION OVERRIDES (must be last to beat base styles) ──── */
+    @media (max-width: 680px) {
+      .how { margin: -100px 8px 0; padding: 140px 16px 32px; border-radius: 20px; }
+      .how-cards { grid-template-columns: 1fr; }
+
+      .roi { padding: 32px 20px; }
+      .roi-stats { flex-direction: column; align-items: center; gap: 48px; }
+
+      .ai-risk { padding: 32px 20px; }
+      .ai-risk-subhead { font-size: 20px; }
+      .ai-risk-body { font-size: 16px; }
+      .ai-risk-btn { font-size: 20px; padding: 18px 32px; }
+
+      .download { padding: 32px 20px; }
+      .download::before { height: 360px; }
+      .app-icon { width: 200px; height: 200px; border-radius: 40px; }
+      .app-icon img { width: 136px; height: 136px; }
+      .store-btns { flex-direction: column; align-items: center; gap: 12px; margin-top: 8px; }
+
+      .footer-cta { padding: 32px 24px; }
+    }
   </style>
 </head>
 <body>
