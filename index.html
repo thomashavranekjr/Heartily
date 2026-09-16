@@ -81,9 +81,25 @@
       cursor: default;
     }
 
+    .nav-hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--blackboard);
+      padding: 4px;
+    }
+    .nav-hamburger svg {
+      width: 28px;
+      height: 28px;
+    }
+
     @media (max-width: 680px) {
-      .nav { padding: 16px 20px; }
+      .nav { padding: 20px 20px; }
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
     }
 
     /* ── HERO ────────────────────────────────────────────────────────── */
@@ -268,8 +284,44 @@
     }
 
     @media (max-width: 900px) {
-      .hero { flex-direction: column; padding-bottom: 48px; }
-      .hero-right { display: none; }
+      .hero { flex-direction: column; align-items: center; padding: 48px 40px 0; text-align: center; }
+      .hero-left { align-items: center; max-width: 560px; padding-top: 0; }
+      .hero-cta { align-self: center; }
+      .hero-right { width: 100%; max-width: 560px; padding-top: 40px; }
+    }
+
+    @media (max-width: 680px) {
+      /* Hero */
+      .hero { padding: 36px 20px 0; }
+      .hero-left { max-width: 100%; gap: 20px; }
+      .hero-sub { font-size: 18px; }
+      .hero-right { padding-top: 32px; }
+      .hero-right-label { font-size: clamp(22px, 6vw, 32px); margin-bottom: 20px; }
+      .cards-stack { height: 260px; }
+
+      /* How section */
+      .how { margin: -100px 8px 0; padding: 140px 16px 48px; border-radius: 20px; }
+      .how-cards { grid-template-columns: 1fr; }
+
+      /* ROI section */
+      .roi { padding: 64px 20px; }
+      .roi-stats { flex-direction: column; align-items: center; gap: 48px; }
+
+      /* AI risk section */
+      .ai-risk { padding: 64px 20px; }
+      .ai-risk-subhead { font-size: 20px; }
+      .ai-risk-body { font-size: 16px; }
+      .ai-risk-btn { font-size: 20px; padding: 18px 32px; }
+
+      /* Download section */
+      .download { padding: 64px 20px; }
+      .download::before { height: 360px; }
+      .app-icon { width: 200px; height: 200px; border-radius: 40px; }
+      .app-icon img { width: 136px; height: 136px; }
+      .store-btns { flex-direction: column; align-items: center; gap: 12px; margin-top: 8px; }
+
+      /* Footer CTA */
+      .footer-cta { padding: 80px 24px; }
     }
 
     /* ── HOW IT WORKS ────────────────────────────────────────────────── */
@@ -656,6 +708,13 @@
       <a href="https://schools.zaptitude.io">Schools</a>
       <span class="disabled">Employers</span>
     </div>
+    <button class="nav-hamburger" aria-label="Open menu">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.375 14H23.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.375 7H23.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.375 21H23.625" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </nav>
 
   <!-- ── HERO ─────────────────────────────────────────────────────────── -->
