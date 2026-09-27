@@ -673,6 +673,20 @@
       transition: opacity 0.15s;
     }
     .footer-cta-btn:hover { opacity: 0.85; }
+
+    .site-legal {
+      background: var(--blackboard);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .site-legal a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .site-legal a:hover { color: #fff; }
     /* ── MOBILE SECTION OVERRIDES (must be last to beat base styles) ──── */
     @media (max-width: 680px) {
       .how { margin: -100px 8px 0; padding: 140px 16px 64px; border-radius: 20px; }
@@ -1047,6 +1061,12 @@
     </h2>
     <a class="footer-cta-btn" href="https://app.zaptitude.io/signup">Get Started</a>
   </section>
+
+  <footer class="site-legal">
+    <span>&copy; 2026 Nine Acre Design Co.</span>
+    <a href="https://app.zaptitude.io/privacy">Privacy Policy</a>
+    <a href="https://app.zaptitude.io/terms">Terms of Service</a>
+  </footer>
 
 </body>
 </html>
